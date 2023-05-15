@@ -1,3 +1,4 @@
+'''
 import wandb
 import torch
 import torch.nn 
@@ -40,3 +41,34 @@ def make(config, device="cuda"):
         model.parameters(), lr=config.learning_rate)
     
     return model, train_loader, test_loader, criterion, optimizer
+'''
+
+#I've commented everything on top just in case we want to keep it and reuse it somehow
+import os
+import cv2 as cv
+
+def read_images():
+    images = []
+    for _ , _ ,files in os.walk("../Images"): #Read images names from Images folder 
+        files = files
+    [images.append(cv.imread('../Images/'+image)) for image in files] #Open the images in a correct format
+    return images
+        
+images = read_images()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
