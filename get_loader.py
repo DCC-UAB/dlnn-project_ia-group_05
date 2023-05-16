@@ -12,23 +12,25 @@ import spacy            # For natural language processing tasks, in this case to
 from torch.nn.utils.rnn import pad_sequence  # For padding sequences to the same length
 from torch.utils.data import DataLoader, Dataset  # For handling the dataset
 from PIL import Image   # For handling image data
+from torchvision import transforms # For resize of the images
+from spacy import *
 
-
-
+spacy_en = spacy.load("en_core_web_sm") # Load the English language model for SpaCy
 
 class Vocabulary:
     def __init__(self, freq_threshold):
         self.itos = {0: "<PAD>", 1: "<SOS>", 2: "<EOS>", 3: "<UNK>"}
         self.stoi = {"<PAD>": 0, "<SOS>": 1, "<EOS>": 2, "<UNK>": 3}
         self.freq_threshold = freq_threshold
+        
 
     def __len__(self):
         return len(self.itos)
     
 	# Static method for tokenizing English text using SpaCy tokenizer
     @staticmethod 
-    def tokenizer_eng(text): #As it is an static method we don't need to write self
-        spacy_en = spacy.load("en") # Load the English language model for SpaCy
+    def tokenizer_eng(text):
+        
         return [tok.text.lower() for tok in spacy_en.tokenizer(text)]
 	
 	# Method for building vocabulary
@@ -52,12 +54,12 @@ class Vocabulary:
                     self.itos[idx] = word
                     idx += 1
 
-    # Method to convert text into numericalized tokens
+     # Method to convert text into numericalized tokens
     def numericalize(self, text):
         tokenized_text = self.tokenizer_eng(text)
         tokens = []
         for token in tokenized_text:
-            if self.stoi[token] in self.stoi:
+            if token in self.stoi:
                 # If a word is in the vocabulary, use its corresponding token
                 tokens.append(self.stoi[token])
             else:
@@ -98,46 +100,76 @@ class FlickrDataset(Dataset):
 
         return img, torch.tensor(numerical_caption)  # Return the image and its corresponding numericalized caption
     
+# Padding class is used to pad the captions to the same length for each batch
 class Padding:
     def __init__(self, pad_idx):
+        # pad_idx is the index of the <PAD> token in the vocabulary
         self.pad_idx = pad_idx
         
     def __call__(self, batch):
+        # For each item in the batch, add a new dimension to the image tensor at the front
         imgs = [item[0].unsqueeze(0) for item in batch]
+        # Concatenate the image tensors along the new dimension
         imgs = torch.cat(imgs, dim=0)
+        # Extract the caption tensors from the batch
         targets = [item[1] for item in batch]
+        # Pad the caption tensors along the sequence dimension (dimension 0) using the <PAD> token
         targets = pad_sequence(targets, batch_first = False, padding_value = self.pad_idx)
         
+        # Return the batch of image tensors and the padded caption tensors
         return imgs, targets
     
+# get_loader function is used to create a DataLoader for the dataset
 def get_loader(root_folder, 
                annotation_file, 
                transform,  
                batch_size = 32, 
-               num_workers = 8, 
+               num_workers = 4, 
                shuffle = True, 
                pin_memory = True,):
     
+    # Create a FlickrDataset object for the given root_folder and annotation_file, using the provided transform
 	dataset = FlickrDataset(root_folder, annotation_file, transform = transform)
 
-	pad_idx = dataset.vocab.stoi("<PAD>")
+    # Get the index of the <PAD> token in the vocabulary
+	pad_idx = dataset.vocab.stoi["<PAD>"]
 	
+    # Create a DataLoader for the dataset
 	loader = DataLoader(
 		dataset = dataset,
 		batch_size = batch_size,
 		num_workers = num_workers,
 		shuffle = shuffle,
 		pin_memory = pin_memory,
-		padding_fn = Padding(pad_idx = pad_idx)
+        # Pass the Padding object as the collate_fn to the DataLoader
+        # The collate_fn is used to combine the individual items in the batch
+		collate_fn = Padding(pad_idx = pad_idx)
 	)
  
+    # Return the DataLoader
 	return loader
 
+# The main function is the entry point of the script
 def main():
-	dataloader = get_loader("flickr8k/images/",
-                        	annotation_file="flickr8k/captions.txt",
-                        	transform = None)
+    # Define the transform to be applied to the images
+    transform = transforms.Compose(
+		[
+            # Resize the images to 224x224
+			transforms.Resize((224, 224)),
+            # Convert the images to PyTorch tensors
+			transforms.ToTensor(),
+		]
+	)
 
-	for idx, (imgs, captions) in enumerate(dataloader):
-		print(imgs.shape)
-		print(captions.shape)
+    # Create a DataLoader for the dataset located at the specified path
+    dataloader = get_loader("/Users/nde-la-f/Documents/Image_caption/flickr8k/images/",
+                        	annotation_file="/Users/nde-la-f/Documents/Image_caption/flickr8k/captions.txt",
+                        	transform = transform)
+    
+    # Iterate over the DataLoader
+    for idx, (imgs, captions) in enumerate(dataloader):
+        # Print the shape of the image and caption tensors for each batch
+        print(imgs.shape)
+        print(captions.shape)
+
+main()
