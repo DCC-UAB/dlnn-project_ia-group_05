@@ -153,7 +153,7 @@ def get_loader(root_folder,
 	)
  
     # Return the DataLoader
-	return loader
+	return loader, dataset
 
 # The main function is the entry point of the script
 def main():
@@ -184,6 +184,3 @@ def main():
         # Print the shape of the image and caption tensors for each batch
         print(imgs.shape)
         print(captions.shape)
-
-main()
-
