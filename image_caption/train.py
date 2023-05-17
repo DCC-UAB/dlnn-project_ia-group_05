@@ -8,6 +8,16 @@ from utils import save_checkpoint, load_checkpoint, print_examples
 from get_loader import get_loader
 from model import CNNtoRNN
 
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision.transforms as transforms
+from torch.utils.tensorboard import SummaryWriter
+from utils import save_checkpoint, load_checkpoint, print_examples
+
+from get_loader import get_loader
+from model import CNNtoRNN
+
 def train():
     # Define the image transformations
     transform = transforms.Compose(
@@ -71,8 +81,8 @@ def train():
     model.train()
 
     for epoch in range(num_epochs):
-        # Print examples of generated captions
-        print_examples(model, device, dataset)
+        # Print examples of generated captions at the beginning of each epoch
+        print_examples(model, device, dataset, num_examples=2)
 
         if save_model:
             # Save the current model checkpoint
@@ -101,6 +111,10 @@ def train():
             optimizer.zero_grad()  # Zero the gradients
             loss.backward()  # Perform backward pass to calculate gradients
             optimizer.step()  # Update the weights using the gradients
+
+            # Print examples of generated captions at specific intervals
+            if (idx + 1) % print_interval == 0:
+                print_examples(model, device, dataset, num_examples=2)
 
 if __name__ == "__main__":
     train()
