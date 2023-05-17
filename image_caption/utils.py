@@ -1,6 +1,11 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
+import os
+import cv2 as cv
+import pandas as pd
+import json
+import numpy as np
 
 
 def save_checkpoint(state, filename):
@@ -57,3 +62,23 @@ def print_examples(model, device, dataset, num_examples=2):
             print(f"Example {idx} - Generated Caption: {caption}")
     
     model.train()
+
+
+def read_images():
+    #When called returns a dictionary in the following format: {'Image name':[numpy array the image,[list of captions for each image]]}
+    images = {}
+    for _ , _ ,files in os.walk("./Images"): #Read images names from Images folder 
+        files = files
+    for image in files:
+        images[image] = [cv.imread('./Images/'+image),[]]
+        break
+    captions = pd.read_csv('./captions.txt')
+    captions_list = []
+
+    for _ , row in captions.iterrows():
+        name = row['image']
+        caption = row['caption']
+        if name in images:
+            images[name][1].append(caption)
+    
+    return images
