@@ -147,7 +147,7 @@ def get_loader(root_folder,
 	)
  
     # Return the DataLoader
-	return loader
+	return loader, dataset
 
 # The main function is the entry point of the script
 def main():
