@@ -108,7 +108,7 @@ class CNNtoRNN(nn.Module):
                 hiddens, states = self.DecoderRNN.lstm(x, states)
                 
                 # Pass the LSTM output through the linear layer to get the output logits
-                output = DecoderRNN.linear(hiddens.unsqueeze(0))
+                output = DecoderRNN.linear(hiddens.squeeze(0))
                 
                 # Get the predicted word by taking the index of the highest logit value
                 predicted = output.argmax(1)
