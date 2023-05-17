@@ -14,6 +14,7 @@ from torch.utils.data import DataLoader, Dataset  # For handling the dataset
 from PIL import Image   # For handling image data
 from torchvision import transforms # For resize of the images
 from spacy import *
+from image_caption.utils import *
 
 spacy_en = spacy.load("en_core_web_sm") # Load the English language model for SpaCy
 
@@ -69,29 +70,34 @@ class Vocabulary:
 
 # Define the custom Dataset class
 class FlickrDataset(Dataset):
-    def __init__(self, root_dir, captions_file, transform=None, freq_threshold=5):
-        self.root_dir = root_dir  # Base directory for images
-        self.df = pd.read_csv(captions_file)  # Load the captions file into a dataframe
-        self.transform = transform  # Transformations to apply to images
+    def __init__(self, transform=None, freq_threshold=5):
+        
+        Images_dict = read_images()                                 #Load the dictionary
+        self.imgs_name = Images_dict.keys()                         #Get the keys of the dict which are all the image names
+        self.transform = transform                                  #Transformations to apply to images
 
-        # Get the image and caption columns
-        self.imgs = self.df['image']
-        self.captions = self.df['caption']
+        #Get captions (Y) and Images numpy arrays (X)
+        self.Y = []                                                 #Create the list that will hold the captions
+        [self.Y.append(value[1]) for _, value in Images_dict]       #Append the captions into the list
+        self.X = []                                                 #List that will hold Images values
+        [self.X.apend(value[0] for _, value in Images_dict)]        #Append images values into list
 
         # Initialize the vocabulary and build it
         self.vocab = Vocabulary(freq_threshold)
-        self.vocab.build_vocabulary(self.captions.tolist())
+        self.vocab.build_vocabulary([caption for sublist in self.Y for caption in sublist])
 
     def __len__(self):
-        return len(self.df)  # Return the total number of items in the dataset
-
+        if len(self.X) == len(self.Y):
+            return len(self.X)   # Return the total number of items in the dataset if length of both X and Y are the same
+        else:
+            raise Exception('Both Y and X must be the same length, the length of Y is {} and {} for X'.format(len(self.Y),len(self.X)))
     def __getitem__(self, id):
-        caption = self.captions[id]  # Get the caption corresponding to the id
-        img_id = self.imgs[id]  # Get the image id corresponding to the id
-        img = Image.open(os.path.join(self.root_dir, img_id)).convert("RGB")  # Open and convert the image
+        caption = self.Y[id]            # Get the caption corresponding to the id
+        img_id = self.imgs_name[id]     # Get the image id corresponding to the id
+        img = self.X[id]                # Open and convert the image
 
         if self.transform is not None:
-            img = self.transform(img)  # Apply transformations to the image
+            img = self.transform(img)   # Apply transformations to the image
 
         # Prepare caption: Start of Sentence + numericalized caption + End of Sentence
         numerical_caption = [self.vocab.stoi["<SOS>"]]
@@ -180,3 +186,4 @@ def main():
         print(captions.shape)
 
 main()
+
