@@ -2,21 +2,13 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
+import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
-from utils import save_checkpoint, load_checkpoint, print_examples
 
+from utils import save_checkpoint, load_checkpoint, print_and_export_examples
 from get_loader import get_loader
 from model import CNNtoRNN
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import torchvision.transforms as transforms
-from torch.utils.tensorboard import SummaryWriter
-from utils import save_checkpoint, load_checkpoint, print_examples
-
-from get_loader import get_loader
-from model import CNNtoRNN
 
 def train():
     # Define the image transformations
@@ -28,11 +20,8 @@ def train():
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),  # Normalize the image tensor
         ]
     )
-    
-    # Set the value for print_interval
-    print_interval = 500  # Print examples every x iterations
 
-    
+
     images_path = input("Enter the images path (or press Enter to use the default path): ")
     annotations_path = input("Enter the annotations path (or press Enter to use the default path): ")
 
@@ -47,7 +36,7 @@ def train():
         root_folder=images_path,
         annotation_file=annotations_path,
         transform=transform,
-        num_workers=4
+        num_workers=4,
     )
 
     # Set CUDA benchmark for improved performance
@@ -65,7 +54,7 @@ def train():
     hidden_size = 256  # Number of units in the hidden state of the RNN
     vocab_size = len(dataset.vocab)  # Size of the vocabulary
     learning_rate = 3e-4  # Learning rate for the optimizer
-    num_epochs = 100  # Number of training epochs
+    num_epochs = 20  # Number of training epochs
     num_layers = 1  # Number of layers in the RNN
 
     # Create a SummaryWriter for TensorBoard visualization
@@ -79,31 +68,25 @@ def train():
 
     if load_model:
         # Load the saved checkpoint
-        step = load_checkpoint(torch.load("my_checkpoint.pth.tar"), model, optimizer)
+        step = load_checkpoint(torch.load("checkpoint.pth.tar"), model, optimizer)
 
     # Set the model to training mode
     model.train()
 
-    for epoch in range(num_epochs):
-        # Print examples of generated captions at the beginning of each epoch
-        print_examples(model, device, dataset, num_examples=2)
+    # Initialize a list to store the training loss values
+    train_loss_values = []
 
-        if save_model:
-            # Save the current model checkpoint
-            checkpoint = {
-                "state_dict": model.state_dict(),
-                "optimizer": optimizer.state_dict(),
-                "step": step,
-            }
-            save_checkpoint(checkpoint)
+    for epoch in range(num_epochs):
+        total_loss = 0.0  # Variable to track the total loss for the epoch
 
         for idx, (imgs, captions) in enumerate(train_loader):
             imgs = imgs.to(device)
             captions = captions.to(device)
-
+            
             # Forward pass through the model
             outputs = model(imgs, captions[:-1])  # We want the model to predict the end token
-
+            #print(outputs) 
+			
             # Calculate the loss
             loss = criterion(outputs.reshape(-1, outputs.shape[2]), captions.reshape(-1))
 
@@ -116,9 +99,34 @@ def train():
             loss.backward()  # Perform backward pass to calculate gradients
             optimizer.step()  # Update the weights using the gradients
 
-            # Print examples of generated captions at specific intervals
-            if (idx + 1) % print_interval == 0:
-                print_examples(model, device, dataset, num_examples=2)
+            # Accumulate the loss for the epoch
+            total_loss += loss.item()
+
+        # Calculate the average loss for the epoch
+        epoch_loss = total_loss / len(train_loader)
+        train_loss_values.append(epoch_loss)
+
+        # Print the epoch loss
+        print(f"Epoch [{epoch+1}/{num_epochs}] - Loss: {epoch_loss:.4f}")
+
+    # Plot the training loss curve
+    plt.plot(range(1, num_epochs+1), train_loss_values)
+    plt.xlabel("Epochs")
+    plt.ylabel("Loss")
+    plt.title("Training Loss Curve")
+    plt.show()
+
+    if save_model:
+        # Save the final model checkpoint
+        checkpoint = {
+            "state_dict": model.state_dict(),
+            "optimizer": optimizer.state_dict(),
+            "step": step,
+        }
+        save_checkpoint(checkpoint, "checkpoint.pth")
+    
+    # Print and export examples after training
+    print_and_export_examples(model, device, dataset, num_examples=5, export_file="examples.txt")
 
 if __name__ == "__main__":
     train()

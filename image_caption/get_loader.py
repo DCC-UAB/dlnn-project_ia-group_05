@@ -1,5 +1,5 @@
 # Text -> Numbers
-# Needof a vocabulary that maps each word to an id
+# Need of a vocabulary that maps each word to an id
 # Set Up Pytorch dataset to load the data
 # Set up padding of every batch (all examples need to have same seqlen)
 # Set up DataLoader
@@ -14,7 +14,6 @@ from torch.utils.data import DataLoader, Dataset  # For handling the dataset
 from PIL import Image   # For handling image data
 from torchvision import transforms # For resize of the images
 from spacy import *
-from image_caption.utils import *
 
 spacy_en = spacy.load("en_core_web_sm") # Load the English language model for SpaCy
 
@@ -55,7 +54,7 @@ class Vocabulary:
                     self.itos[idx] = word
                     idx += 1
 
-     # Method to convert text into numericalized tokens
+    # Method to convert text into numericalized tokens
     def numericalize(self, text):
         tokenized_text = self.tokenizer_eng(text)
         tokens = []
@@ -70,41 +69,37 @@ class Vocabulary:
 
 # Define the custom Dataset class
 class FlickrDataset(Dataset):
-    def __init__(self, transform=None, freq_threshold=5):
-        
-        Images_dict = read_images()                                 #Load the dictionary
-        self.imgs_name = Images_dict.keys()                         #Get the keys of the dict which are all the image names
-        self.transform = transform                                  #Transformations to apply to images
+    def __init__(self, root_dir, captions_file, transform=None, freq_threshold=5):
+        self.root_dir = root_dir  # Base directory for images
+        self.df = pd.read_csv(captions_file)  # Load the captions file into a dataframe
+        self.transform = transform  # Transformations to apply to images
 
-        #Get captions (Y) and Images numpy arrays (X)
-        self.Y = []                                                 #Create the list that will hold the captions
-        [self.Y.append(value[1]) for _, value in Images_dict]       #Append the captions into the list
-        self.X = []                                                 #List that will hold Images values
-        [self.X.apend(value[0] for _, value in Images_dict)]        #Append images values into list
+        # Get the image and caption columns
+        self.imgs = self.df['image']
+        self.captions = self.df['caption']
 
         # Initialize the vocabulary and build it
         self.vocab = Vocabulary(freq_threshold)
-        self.vocab.build_vocabulary([caption for sublist in self.Y for caption in sublist])
+        self.vocab.build_vocabulary(self.captions.tolist())
 
     def __len__(self):
-        if len(self.X) == len(self.Y):
-            return len(self.X)   # Return the total number of items in the dataset if length of both X and Y are the same
-        else:
-            raise Exception('Both Y and X must be the same length, the length of Y is {} and {} for X'.format(len(self.Y),len(self.X)))
+        return len(self.df)  # Return the total number of items in the dataset
+
     def __getitem__(self, id):
-        caption = self.Y[id]            # Get the caption corresponding to the id
-        img_id = self.imgs_name[id]     # Get the image id corresponding to the id
-        img = self.X[id]                # Open and convert the image
+        caption = self.captions[id]  # Get the caption corresponding to the id (I think there might be an error bc there are 5 cations for the same id)
+        img_id = self.imgs[id]  # Get the image id corresponding to the id
+        img = Image.open(os.path.join(self.root_dir, img_id)).convert("RGB")  # Open and convert the image
 
         if self.transform is not None:
-            img = self.transform(img)   # Apply transformations to the image
+            img = self.transform(img)  # Apply transformations to the image
 
         # Prepare caption: Start of Sentence + numericalized caption + End of Sentence
         numerical_caption = [self.vocab.stoi["<SOS>"]]
         numerical_caption += self.vocab.numericalize(caption)
         numerical_caption.append(self.vocab.stoi["<EOS>"])
 
-        return img, torch.tensor(numerical_caption)  # Return the image and its corresponding numericalized caption
+        return img, torch.tensor(numerical_caption)  # Return the image and its corresponding numericalized caption 
+    												 # (numericalized captions = [1,stoi(W1),...,stoi(Wn),2])
     
 # Padding class is used to pad the captions to the same length for each batch
 class Padding:
@@ -129,31 +124,30 @@ class Padding:
 def get_loader(root_folder, 
                annotation_file, 
                transform,  
-               batch_size = 32, 
-               num_workers = 4, 
-               shuffle = True, 
-               pin_memory = True,):
+               batch_size=256, 
+               num_workers=4, 
+               shuffle=True, 
+               pin_memory=True,
+               ):
     
     # Create a FlickrDataset object for the given root_folder and annotation_file, using the provided transform
-	dataset = FlickrDataset(root_folder, annotation_file, transform = transform)
+    dataset = FlickrDataset(root_folder, annotation_file, transform=transform)
 
     # Get the index of the <PAD> token in the vocabulary
-	pad_idx = dataset.vocab.stoi["<PAD>"]
-	
+    pad_idx = dataset.vocab.stoi["<PAD>"]
+
     # Create a DataLoader for the dataset
-	loader = DataLoader(
-		dataset = dataset,
-		batch_size = batch_size,
-		num_workers = num_workers,
-		shuffle = shuffle,
-		pin_memory = pin_memory,
-        # Pass the Padding object as the collate_fn to the DataLoader
-        # The collate_fn is used to combine the individual items in the batch
-		collate_fn = Padding(pad_idx = pad_idx)
-	)
- 
-    # Return the DataLoader
-	return loader, dataset
+    loader = DataLoader(
+        dataset=dataset,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        shuffle=shuffle,
+        pin_memory=pin_memory,
+        collate_fn=Padding(pad_idx=pad_idx)
+    )
+
+    # Return both the DataLoader and the dataset
+    return loader, dataset
 
 # The main function is the entry point of the script
 def main():
@@ -184,3 +178,4 @@ def main():
         # Print the shape of the image and caption tensors for each batch
         print(imgs.shape)
         print(captions.shape)
+
