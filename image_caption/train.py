@@ -4,6 +4,7 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
+from datetime import datetime
 
 from utils import save_checkpoint, load_checkpoint, print_and_export_examples
 from get_loader import get_loader
@@ -46,7 +47,7 @@ def train():
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
     # Set flags for loading and saving models
-    load_model = False
+    load_model = True
     save_model = True
 
     # Hyperparameters
@@ -68,54 +69,69 @@ def train():
 
     if load_model:
         # Load the saved checkpoint
-        step = load_checkpoint(torch.load("checkpoint.pth.tar"), model, optimizer)
+        step = load_checkpoint(torch.load("./checkpoint11.pth"), model, optimizer)
 
     # Set the model to training mode
     model.train()
 
     # Initialize a list to store the training loss values
     train_loss_values = []
+    
 
+    print_every = 50  # Change this to control how often you want to print
+    
     for epoch in range(num_epochs):
         total_loss = 0.0  # Variable to track the total loss for the epoch
-
+        start_time = datetime.now()  # Start timing
+        
         for idx, (imgs, captions) in enumerate(train_loader):
             imgs = imgs.to(device)
             captions = captions.to(device)
-            
             # Forward pass through the model
             outputs = model(imgs, captions[:-1])  # We want the model to predict the end token
-            #print(outputs) 
-			
-            # Calculate the loss
             loss = criterion(outputs.reshape(-1, outputs.shape[2]), captions.reshape(-1))
-
-            # Log the training loss in TensorBoard
+            
+            #Log the training loss in TensorBoard 
             writer.add_scalar("Training loss", loss.item(), global_step=step)
             step += 1
-
-            # Zero the gradients, perform backward pass, and update the weights
+            
             optimizer.zero_grad()  # Zero the gradients
             loss.backward()  # Perform backward pass to calculate gradients
             optimizer.step()  # Update the weights using the gradients
-
-            # Accumulate the loss for the epoch
+            
             total_loss += loss.item()
-
-        # Calculate the average loss for the epoch
+            
+            if (idx + 1) % print_every == 0:
+                print(f'Epoch [{epoch+1}/{num_epochs}], Step [{idx+1}/{len(train_loader)}], Loss: {loss.item()}, Time: {datetime.now() - start_time}')
+                start_time = datetime.now()  # Reset timing
+                
         epoch_loss = total_loss / len(train_loader)
         train_loss_values.append(epoch_loss)
+        print(f"End of Epoch [{epoch+1}/{num_epochs}], Loss: {epoch_loss:.4f}")
+        
+        if save_model:
+            # Save the final model checkpoint
+            checkpoint = {
+                "state_dict": model.state_dict(),
+                "optimizer": optimizer.state_dict(),
+                "step": step,
+            }
+            save_checkpoint(checkpoint, "checkpoint"+str(epoch+1)+".pth")
 
-        # Print the epoch loss
-        print(f"Epoch [{epoch+1}/{num_epochs}] - Loss: {epoch_loss:.4f}")
+        # Plot the training loss curve
+        plt.plot(range(1, num_epochs+1), train_loss_values)
+        plt.xlabel("Epochs")
+        plt.ylabel("Loss")
+        plt.title(f"Training Loss Curve in epoch {epoch + 1}")
+        plt.show()
 
     # Plot the training loss curve
     plt.plot(range(1, num_epochs+1), train_loss_values)
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
-    plt.title("Training Loss Curve")
+    plt.title("Training Loss Curve after training")
     plt.show()
-
+    
     if save_model:
         # Save the final model checkpoint
         checkpoint = {
@@ -123,10 +139,11 @@ def train():
             "optimizer": optimizer.state_dict(),
             "step": step,
         }
-        save_checkpoint(checkpoint, "checkpoint.pth")
+        save_checkpoint(checkpoint, "final_checkpoint.pth")
     
     # Print and export examples after training
-    print_and_export_examples(model, device, dataset, num_examples=5, export_file="examples.txt")
+    #print_and_export_examples(model, device, dataset, num_examples=5, export_file="examples.txt")
 
 if __name__ == "__main__":
     train()
+
