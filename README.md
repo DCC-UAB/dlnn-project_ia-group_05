@@ -60,10 +60,7 @@ We appreciate having had this experience that has helped us a lot to understand 
 
 ## Contributors
 
-Authors:
-  Neil De La Fuente
-  Maiol Sabater
-  Daniel Vidal
+Authors: Neil De La Fuente, Maiol Sabater, Daniel Vidal
 
 Subject: Neural Networks and Deep Learning.
 
