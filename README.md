@@ -31,35 +31,42 @@ Next, to run the example code, simply use:
 ```
 python train.py
 ```
+If you want to use our already trained models just load the checkpoint we have prepared in a folder from drive. Here you can found checkpoints for different models, you can download from here to use them for testing the model or training it a little more:
 
+[Folder with the checkpoints of different models](https://drive.google.com/drive/folders/1ada905qZpaIdcILrhixOt4uVA2xHtHzt?usp=sharing)
+
+and run evaluation:
+
+```
+python evaluation.py
+```
 ## Code Structure
 
-The code in this repository primarily consists of a model implementation (CNNtoRNN), a dataset loading function (get_loader), and a main file that orchestrates model evaluation. It provides utility functions for generating and visualizing image captions and calculating BLEU scores, a popular metric for evaluating the quality of generated text in comparison to reference text.
-
-In `main.py`, the model is loaded from a checkpoint file and used to generate captions for a set of images. The original and generated captions are printed, and the average BLEU score across all images is computed.
+The code in this repository primarily consists of a model implementation (CNNtoRNN), a dataset loading function (get_loader), a utils.py file that is used to save and load the models and a train file for training the model and saving the model with in a pth file called checkpoint; the training uses all previous files. We also have an evaluation.py file that loads a model already trained to do some test and show some examples, it provides utility functions for generating and visualizing image captions and calculating BLEU scores, a popular metric for evaluating the quality of generated text in comparison to reference text. 
 
 ## Model Evaluation
 
-Our evaluation focuses on two areas: the BLEU score and a visual inspection of the generated captions. The BLEU score gives us a quantitative measure of our model's performance, while the visual inspection of the generated captions lets us qualitatively assess the model's output.
+Our evaluation focuses on two areas: the BLEU score and a visual inspection of the generated captions. The BLEU score gives us a quantitative measure of our model's performance, while the visual inspection of the generated captions lets us qualitatively assess the model's output. The original and generated captions are printed, and the average BLEU score across all images is computed.
 
 ## Final Words
 
 This project is an exciting journey into the intersection of computer vision and natural language processing. We hope that this project can serve as a helpful resource for those interested in image captioning, deep learning, and AI in general.
+
+We appreciate having had this experience that has helped us a lot to understand how complicated a Deep Learning project can be, but also how exciting it is to get results after having done hard work.
 
 ## References
 [CS 152 NN—25: Attention: Image Captioning by Neil Rhodes](https://youtu.be/JTXPrjvhLl8)
 
 
 ## Contributors
-Write here the name and UAB mail of the group members
+
+Authors:
+  Neil De La Fuente
+  Maiol Sabater
+  Daniel Vidal
 
 Subject: Neural Networks and Deep Learning.
 
 Degreee in Artificial Intelligence, 2n course.
 
 UAB, 2023.
-
-Authors:
-  Neil De La Fuente
-  Maiol Sabater
-  Daniel Vidal
