@@ -45,3 +45,6 @@ We encourage exploration and modifications to improve the model. We attempted di
 
 For a detailed walkthrough of the entire process, refer to our Python Notebook. It provides step-by-step instructions, from initialization to model evaluation, facilitating an effective understanding of the Image Captioning model.
 
+## Qualitative evaluation
+
+Qualitative evaluation for our image captioning model with attention can be found on these slides: [Qualitative evaluation attention](https://docs.google.com/presentation/d/12JIvFaUerl8xQFJnY5fT7xTXw3kX638slbluTsOe_fc/edit?usp=sharing))
