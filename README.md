@@ -58,10 +58,15 @@ Our evaluation focuses on two areas: the BLEU score and a visual inspection of t
 
 This project is an exciting journey into the intersection of computer vision and natural language processing. We hope that this project can serve as a helpful resource for those interested in image captioning, deep learning, and AI in general.
 
+It´s worth to note that our main goal has been always learning as much as we can, that´s why we chose this project, we really thought that would be the most challenging as well as self-rewarding, and so it has been, we put a lot of effort but it paid off completely, regardless of te mark.
+
 We appreciate having had this experience that has helped us a lot to understand how complicated a Deep Learning project can be, but also how exciting it is to get results after having done hard work.
+
+
 
 ## References
 [CS 152 NN—25: Attention: Image Captioning by Neil Rhodes](https://youtu.be/JTXPrjvhLl8)
+[Show, Attend and Tell](https://arxiv.org/abs/1502.03044)
 
 
 ## Contributors
