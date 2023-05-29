@@ -40,11 +40,16 @@ We encourage exploration and modifications to improve the model. We attempted di
 - Scheduler: With gamma = 0.9 and step_size = 1
 - Dropout: Included in RNN layer
 - Batch normalization: Not included
+- Weight Decay: 1e-3
 
 ## Guided Run-through
 
 For a detailed walkthrough of the entire process, refer to our Python Notebook. It provides step-by-step instructions, from initialization to model evaluation, facilitating an effective understanding of the Image Captioning model. 
 [Full guided notebook](https://colab.research.google.com/drive/1oNQmnL9KO0TSOi4bNFqvnAgi3FdRgI8V?authuser=4#scrollTo=TIU_x5x68vuw)
+
+## Comments on Attention
+
+Attention works amazingly fine, that fine that it overfits too fast, that´s why we had to add an exagerated amount of regularization, trying to control the beast. Luckily we were able to avoid some of this overfitting and it should generalize well. Nevertheless we tested on training set due to time issues.
 
 ## Qualitative evaluation
 
