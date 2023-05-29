@@ -1,6 +1,6 @@
 # Image Captioning: Transforming Visuals into Text
 
-This repository offers an advanced solution for Image Captioning, turning visual content into descriptive sentences using a powerful combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN).
+This folder offers an advanced solution for Image Captioning, turning visual content into descriptive sentences using a powerful combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN), in this case also adding attention, that makes our model much more flexible.
 
 ## Repository Structure
 
