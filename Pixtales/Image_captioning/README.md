@@ -2,7 +2,7 @@
 
 ## Contents
 
-This repository contains the code and files for the Image Captioning project, using a CNN and RNN.
+This folder contains the code and files for the Image Captioning project, using a CNN and RNN. 
 
 ### Files
 
