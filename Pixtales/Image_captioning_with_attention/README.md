@@ -42,19 +42,6 @@ Prior to running the code, please ensure you have the following:
 2. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
 3. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
 
-You will also need the following libraries, packages, and frameworks:
-- PyTorch
-- Spacy
-- OS
-- Pandas
-- NumPy
-- PIL (Pillow)
-
-Download the "en_core_web_sm" language model from spacy by running the following command:
-```
-python -m spacy download en_core_web_sm
-```
-
 ### Execution
 
 After setting up the environment and downloading the language model, execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder:
