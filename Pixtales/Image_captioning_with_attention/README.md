@@ -24,7 +24,7 @@ This repository includes the following key files:
 
 Prior to running the code, please ensure you have the following:
 
-1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing).
+1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1x2pDFbpIsA8fCUomwBpo6wBy0Yw9LFF_?usp=sharing).
 2. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
 3. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
 
