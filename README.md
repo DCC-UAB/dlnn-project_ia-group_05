@@ -12,6 +12,12 @@ PIXTALES is a project that uses a combination of Convolutional Neural Networks (
 
 Our Objective is to implement different models with different configurations and structures that are able to train and provide some results, and highlight the best results. Another goal is to try different ways to test our model, using different metrics and testing it with different datasets such as COCO dataset or Flickr30k dataset, but in principle we are going to use the Flickr8k dataset.
 
+## Data
+
+You can get all the data you will need in the following folder from google drive so you don't need to search for it.
+
+[Image Captioning Data](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing)
+
 ## Getting Started
 
 First, you need to set clone this repository in your local (or virtual) machine
@@ -33,7 +39,7 @@ python train.py
 ```
 If you want to use our already trained models just load the checkpoint we have prepared in a folder from drive. Here you can found checkpoints for different models, you can download from here to use them for testing the model or training it a little more:
 
-[Folder with the checkpoints of different models](https://drive.google.com/drive/folders/1ada905qZpaIdcILrhixOt4uVA2xHtHzt?usp=sharing)
+[Checkpoints of different models](https://drive.google.com/drive/folders/1ada905qZpaIdcILrhixOt4uVA2xHtHzt?usp=sharing)
 
 and run evaluation:
 
