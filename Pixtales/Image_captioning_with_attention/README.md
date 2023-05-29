@@ -53,4 +53,4 @@ Qualitative evaluation for our image captioning model with attention can be foun
 
 <img width="567" alt="image" src="https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/320be3f8-4d90-4ac4-88be-6678c25a6335">
 
-
+<img width="564" alt="image" src="https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/d7f0b38c-075e-4493-9a65-303b7c79c6ae">
