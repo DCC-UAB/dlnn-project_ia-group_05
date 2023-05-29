@@ -5,9 +5,10 @@ This folder offers an attention based solution for Image Captioning, using a pow
 ## Table of Contents
 
 - [Repository Structure](#Repository-Structure)
-- [Requirements](##Requirements)
-- [Installation and Usage](##Execution)
-- [Extending the model](##Extending-the-model)
+- [Requirements](#Requirements)
+- [Installation and Usage](#Execution)
+- [Extending the model](#Extending-the-model)
+- [Guided Run-through](#Guided-Run-through)
 
 
 ## Repository Structure
