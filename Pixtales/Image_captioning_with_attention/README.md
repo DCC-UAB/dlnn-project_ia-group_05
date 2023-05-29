@@ -6,11 +6,11 @@ This folder offers an attention based solution for Image Captioning, using a pow
 
 This repository includes the following key files:
 
-- **model.py**: Defines the architecture of the model, featuring:
-  - **encoderCNN**: Utilizes a VGG-16 model pre-trained on ImageNet to extract image features.
-  - **decoderRNN**: Employs an LSTM network for decoding feature vectors into comprehensive captions.
-  - **AdditiveAttention**: Executes additive attention between image feature vectors and previous hidden states.
-  - **CNNtoRNN**: A unified model class that combines the functionality of the encoder and decoder.
+- `model.py`: Defines the architecture of the model, featuring:
+  - `encoderCNN`: Utilizes a VGG-16 CNN pre-trained on ImageNet to extract image features.
+  - `decoderRNN`: Employs an LSTM network for decoding feature vectors into comprehensive captions.
+  - `AdditiveAttention`: Executes additive attention between image feature vectors and previous hidden states.
+  - `CNNtoRNN`: A unified model class that combines the functionality of the encoder and decoder.
 
 - **get_loader.py**: Constructs DataLoader for the project, containing classes for vocabulary creation, dataset processing, and input padding.
 
