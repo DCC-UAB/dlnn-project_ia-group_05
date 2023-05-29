@@ -1,4 +1,4 @@
-# Image Captioning: Transforming Visuals into Text
+# Image Captioning: An attention approach
 
 This folder offers an attention based solution for Image Captioning, using a powerful combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN), in this case also adding attention, that makes our model much more flexible and interpretable (Also handling better long sentences). Is worth noting that we wanted to implement our own attention mechanism without recurring to third´s pretrained models. We did this knowing that the quality could not be as good as with a pretrained model like BERT or GPT beacuse we wanted to see where we could get to.
 
@@ -27,6 +27,40 @@ Prior to running the code, please ensure you have the following:
 1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1x2pDFbpIsA8fCUomwBpo6wBy0Yw9LFF_?usp=sharing).
 2. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
 3. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
+
+You will also need the following libraries, packages, and frameworks:
+- PyTorch
+- Spacy
+- OS
+- Pandas
+- NumPy
+- PIL (Pillow)
+
+Download the "en_core_web_sm" language model from spacy by running the following command:
+```
+python -m spacy download en_core_web_sm
+```
+
+### Execution
+
+After setting up the environment and downloading the language model, execute the following command in the terminal:
+```
+python train.py
+```
+
+The script will prompt you to enter the paths for the training and validation images, as well as the training and validation captions.
+
+Once the training starts, you will see the progress in the terminal, including loss evolution, epoch, and step information.
+
+At the end of each epoch, the model will be saved in a .pth file. After training completes, a plot showing the training and validation loss curves will be displayed.
+
+Use the saved checkpoint to evaluate the model by running the `evaluation.py` script. It will prompt you to enter the path to the model checkpoint and display generated captions along with their corresponding BLEU scores and ground truth captions.
+
+To run `evaluation.py` is as easy as this:
+
+```
+pyton evaluation.py
+```
 
 ## Extending the Model
 
