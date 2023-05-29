@@ -1,76 +1,80 @@
 # Image Captioning
 
-## - Content
+## Contents
 
-This folder contains the following files:
+This repository contains the code and files for an Image Captioning project.
 
-- *model.py*: this file contains the structure of the model in different classes. The first class is the encoderCNN that consists in a ResNet CNN pretrained in imageNet that extracts the features from the images; the second class is the decoderRNN that consists in a LSTM network that takes the fature vectors of the images that is concatenated with the feature vector from the captions that was obtained using an embeding layer, this information is pased to the LSTM to generate words recurrently keeping the previous information until the sentence is compleated when de model predicts an EOS (End of Sentence); finally, the class CNNtoRNN that joints functions of the previous to classes in one class that receives the images and the captions and returns the codified sentence.
+### Files
 
-- *get_loader.py*: this file contains a function to create the data loaders that we are going to use in this project. There are three different classes in this file:
-  - *Vocabulary*: this class creates the vocabulary using the language model from spacy 'en_core_web_sm' to tokenize the words in the captions and saving each token in a dictionary and assign an index to each token. There is a dictionary to get the index given the token and a dictionary to get the token given the index.
-  - *FlickrDataset*: this class generates the dataloader loading the file with the captions to get the filenames of the images, the corresponding captions and the vocabulary.
-  - *Padding*: this class is for adding padding to the captions so that all captions in a single batch have the same length.
+- **model.py**: This file contains the structure of the model in different classes. The classes include:
+  - `encoderCNN`: A ResNet CNN pretrained on ImageNet that extracts features from the images.
+  - `decoderRNN`: An LSTM network that generates words recursively using the image features and captions as inputs.
+  - `CNNtoRNN`: Combines the functionality of `encoderCNN` and `decoderRNN` to encode images and captions and produce codified sentences.
 
-- *utils.py*: this file contains two functions:
-  - *save_checkpoint*: function to save the model in a pth file.
-  - *load_checkpoint*: function to load a model already trained and saved in a pth file.
+- **get_loader.py**: This file contains a function to create data loaders for the project. It includes the following classes:
+  - `Vocabulary`: Creates the vocabulary by tokenizing words in the captions using the "en_core_web_sm" language model from spacy.
+  - `FlickrDataset`: Generates a data loader by loading image filenames, captions, and the vocabulary.
+  - `Padding`: Adds padding to captions in a batch to ensure uniform length.
 
-- *train.py*: This script is used to train an image captioning model using a CNN-to-RNN architecture. It loads the dataset of images and captions, creates the necessary data loader, initializes the model, loss function, and optimizer. The script then performs the training loop for the specified number of epochs, logging the training loss using TensorBoard. At the end of training, it saves the final model checkpoint and plots the training loss curve.
+- **utils.py**: This file contains two utility functions:
+  - `save_checkpoint`: Saves the model in a .pth file.
+  - `load_checkpoint`: Loads a pre-trained model from a .pth file.
 
-- *evaluation.py*: 
+- **train.py**: This script trains an image captioning model using a CNN-to-RNN architecture. It loads the image and caption datasets, creates data loaders, initializes the model, loss function, and optimizer. The script performs the training loop for a specified number of epochs, logs the training loss using TensorBoard, and saves the final model checkpoint and training loss curve.
 
-## - Requirements
+- **evaluation.py**: This script evaluates the trained model. It prompts the user to enter the path to the trained model checkpoint, generates captions for sample images, and displays the generated captions, BLEU scores, and ground truth captions for comparison.
 
-You will need to download the images and the captions using the following link that will take you to a floder in google drive with the images and the captions splited. For this model you should use the training images and captions, and the validation images and captions splited. There is a file with all captions that you don't need for this model.
+### Requirements
 
-[flickr8k Dataset](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing)
+To run this project, you need to download the image and caption datasets. The datasets are available for download using the following link: [flickr8k Dataset](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing). Download the training images and captions, as well as the validation images and captions as separate files.
 
-You will need and environment that contains the following libaries, packages and frameworks: 
-```
-pytorch, spacy, os, pandas, numpy, PIL (pillow).
-```
-You will also need to download the 'en_core_web_sm' language model from spacy to get the vocabulary from the captions using:
+You will also need the following libraries, packages, and frameworks:
+- PyTorch
+- Spacy
+- OS
+- Pandas
+- NumPy
+- PIL (Pillow)
 
+Download the "en_core_web_sm" language model from spacy by running the following command:
 ```
 python -m spacy download en_core_web_sm
 ```
 
-## Execution
+### Execution
 
-After setting up the environment and downloading the language model you should execute 
-
+After setting up the environment and downloading the language model, execute the following command in the terminal:
 ```
 python train.py
 ```
 
-Then, the terminal will ask you to enter the paths to load the images for training and a path for the images for validation, then, a path for the training captions and a path for the validation captions.
+The script will prompt you to enter the paths for the training and validation images, as well as the training and validation captions.
 
-From now on, you will see the that the training is running and some prints of the loss evolution, the epoch and the step.
+Once the training starts, you will see the progress in the terminal, including loss evolution, epoch, and step information.
 
-At every epoch the model will be saved in a pth file. At the end of the training you will see a plot with the evolution of the training and validation loss. During the validation we save the BLEU scores with the corresponding captions to keep the best captions.
+At the end of each epoch, the model will be saved in a .pth file. After training completes, a plot showing the training and validation loss curves will be displayed.
 
-Then, you can use the checkpoint to evaluate the model in the evaluation.py, which will ask you to enter the path for the model and it will show some examples with the generated caption with the corresponding BLEU score and the correct caption from the ground truth.
+Use the saved checkpoint to evaluate the model by running the `evaluation.py` script. It will prompt you to enter the path to the model checkpoint and display generated captions along with their corresponding BLEU scores and ground truth captions.
 
-## - Using different datasets
+### Using Different Datasets
 
-In order to make the model more robust and get better results, we tried to train our model with different dataset such as COCO or Flickr30k but we experimented some problems when loading the data and the formats of the data were different. We tried to change the format of the data and upload all images, but during the training we got problems when loading some images.
+We attempted to train our model with different datasets such as COCO or Flickr30k to improve its performance and robustness. However, we encountered issues with data loading and different data formats. Despite attempts to modify and upload the images in different formats, we faced problems during training when loading certain images.
 
-## - Trying different configurations
+### Trying Different Configurations
 
-We tried different embedding and hidden size for the models, different learning rates, different batch size, different number of layers, we tried to train the model with scheduler and without scheduler and the best results we obtained has this configuration:
- - embedding size = 256
- - hidden size = 256
- - batch size = 32
- - learning rate = 3e-4
- - num layers = 2
- - scheduler = False
- - dropout = 0.5
- - Batch normalization = True
+During the project, we experimented with various configurations to optimize the model's performance. We tried different embedding and hidden sizes, learning rates, batch sizes, number of layers, and training with or without a scheduler. After exploring these options, we found the following configuration to yield the best results:
 
-## App
+- Embedding size: 256
+- Hidden size: 256
+- Batch size: 32
+- Learning rate: 3e-4
+- Number of layers: 2
+- Scheduler: False
+- Dropout: 0.5
+- Batch normalization: True
 
-##
+Feel free to modify these parameters according to your specific needs and dataset characteristics to achieve the desired results.
 
-
+## APP
 
 
