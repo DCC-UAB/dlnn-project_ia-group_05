@@ -5,9 +5,9 @@ import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from torch.utils.tensorboard import SummaryWriter
 
-from utils_attention import save_checkpoint, load_checkpoint
-from get_loader_attention import get_loader
-from model_attention import CNNtoRNN
+from utils import save_checkpoint, load_checkpoint
+from get_loader import get_loader
+from model import CNNtoRNN
 
 
 def train():
