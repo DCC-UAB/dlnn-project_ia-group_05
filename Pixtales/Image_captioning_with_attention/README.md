@@ -10,6 +10,7 @@ This folder offers an attention based solution for Image Captioning, using a pow
 - [Extending the model](#Extending-the-model)
 - [Guided Run-through](#Guided-Run-through)
 - [Comments on Attention](#Comments-on-Attention)
+- [Qualitative evaluation](#Qualitative evaluation)
 
 
 ## Repository Structure
