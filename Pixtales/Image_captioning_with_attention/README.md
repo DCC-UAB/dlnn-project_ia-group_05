@@ -1,6 +1,6 @@
 # Image Captioning: Transforming Visuals into Text
 
-This folder offers an attention based solution for Image Captioning, using a powerful combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN), in this case also adding attention, that makes our model much more flexible and interpretable. Is worth noting that we wanted to implement our own attention mechanism without recurring to third´s pretrained models. We did this knowing that the quality could not be as good as with a pretrained model like BERT or GPT beacuse we wanted to see where we could get to.
+This folder offers an attention based solution for Image Captioning, using a powerful combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN), in this case also adding attention, that makes our model much more flexible and interpretable (Also handling better long sentences). Is worth noting that we wanted to implement our own attention mechanism without recurring to third´s pretrained models. We did this knowing that the quality could not be as good as with a pretrained model like BERT or GPT beacuse we wanted to see where we could get to.
 
 ## Repository Structure
 
