@@ -62,7 +62,7 @@ We tried different embedding and hidden size for the models, different learning 
  - hidden size = 256
  - batch size = 32
  - learning rate = 3e-4
- - num layers = 1
+ - num layers = 2
  - scheduler = False
  - dropout = 0.5
  - Batch normalization = True
