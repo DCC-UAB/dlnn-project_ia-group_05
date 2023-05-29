@@ -23,7 +23,7 @@ This folder contains the following files:
 
 You will need to download the images and the captions using the following link that will take you to a floder in google drive with the images and the captions splited. For this model you should use the training images and captions, and the validation images and captions splited. There is a file with all captions that you don't need for this model.
 
-[flickr Dataset](link)
+[flickr8k Dataset](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing)
 
 You will need and environment that contains the following libaries, packages and frameworks: 
 ```
@@ -48,6 +48,8 @@ Then, the terminal will ask you to enter the paths to load the images for traini
 From now on, you will see the that the training is running and some prints of the loss evolution, the epoch and the step.
 
 At every epoch the model will be saved in a pth file. At the end of the training you will see a plot with the evolution of the training and validation loss. During the validation we save the BLEU scores with the corresponding captions to keep the best 5 captions.
+
+Then, you can use the checkpoint to evaluate the model in the evaluation.py, which will ask you to enter the path for the model and it will show some examples with the generated caption with the corresponding BLEU score and the correct caption from the ground truth.
 
 ## - Using different datasets
 
