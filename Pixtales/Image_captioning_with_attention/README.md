@@ -33,7 +33,7 @@ This repository includes the following key files:
 
 ## Requirements
 
-We highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)
+**We highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
 
 
 Prior to running the code, please ensure you have the following:
