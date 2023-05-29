@@ -66,6 +66,7 @@ We appreciate having had this experience that has helped us a lot to understand 
 
 ## References
 [CS 152 NN—25: Attention: Image Captioning by Neil Rhodes](https://youtu.be/JTXPrjvhLl8)
+
 [Show, Attend and Tell](https://arxiv.org/abs/1502.03044)
 
 
