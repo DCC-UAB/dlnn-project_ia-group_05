@@ -32,6 +32,7 @@ Prior to running the code, please ensure you have the following:
 
 We encourage exploration and modifications to improve the model. We attempted different configurations and data sources in pursuit of optimal performance. Our optimal configuration was found to be:
 
+- Pretrained CNN: VGG16 pretrained on imageNEt
 - Embedding size: 128
 - Hidden size: 512
 - Batch size: 32
