@@ -22,6 +22,8 @@ This repository includes the following key files:
 
 ## Prerequisites
 
+We highly recommend and encourage you to directly go to the ## Guided Run - Through
+
 Prior to running the code, please ensure you have the following:
 
 1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1x2pDFbpIsA8fCUomwBpo6wBy0Yw9LFF_?usp=sharing).
