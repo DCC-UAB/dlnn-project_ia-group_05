@@ -1,61 +1,47 @@
-# Image Captioning
+# Image Captioning: Transforming Visuals into Text
 
-## Content
+This repository offers an advanced solution for Image Captioning, turning visual content into descriptive sentences using a powerful combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN).
 
-This folder contains the following files:
+## Repository Structure
 
-- *model.py*: this file contains the structure of the model in different classes. The class that form the structure of our model are the following:
-  - *encoderCNN class*: that consists in a VGG-16 CNN pretrained in imageNet that extracts the features from the images.
-  - *decoderRNN class*: that consists in a LSTM network that takes the fature vectors of the images that is concatenated with the feature vector from the captions that was obtained using an embeding layer, this information is pased to the LSTM to generate words recurrently keeping the previous information until the sentence is compleated when de model predicts an EOS (End of Sentence).
-  - *AdditiveAttention class*: that performs the additive attention between the feature vector of the image with the previous hidden state using a linear layer with the feature vector and the previous state concatenated. This process returns the attention weights for that state (word).
-  - *CNNtoRNN class*: that joints the functions of the previous classes in one class that receives the images and the captions and returns the codified sentence.
+This repository includes the following key files:
 
-- *get_loader.py*: this file contains a function to create the data loaders that we are going to use in this project. There are three different classes in this file:
-  - *Vocabulary*: this class creates the vocabulary using the language model from spacy 'en_core_web_sm' to tokenize the words in the captions and saving each token in a dictionary and assign an index to each token. There is a dictionary to get the index given the token and a dictionary to get the token given the index.
-  - *FlickrDataset*: this class generates the dataloader loading the file with the captions to get the filenames of the images, the corresponding captions and the vocabulary.
-  - *Padding*: this class is for adding padding to the captions so that all captions in a single batch have the same length.
+- **model.py**: Defines the architecture of the model, featuring:
+  - **encoderCNN**: Utilizes a VGG-16 model pre-trained on ImageNet to extract image features.
+  - **decoderRNN**: Employs an LSTM network for decoding feature vectors into comprehensive captions.
+  - **AdditiveAttention**: Executes additive attention between image feature vectors and previous hidden states.
+  - **CNNtoRNN**: A unified model class that combines the functionality of the encoder and decoder.
 
-- *utils.py*: this file contains two functions:
-  - *save_checkpoint*: function to save the model in a pth file.
-  - *load_checkpoint*: function to load a model already trained and saved in a pth file.
-  Note: The utils.py for the model with attention also saves and loads the scheduler of the model. In the model without attention there is no scheduler.
+- **get_loader.py**: Constructs DataLoader for the project, containing classes for vocabulary creation, dataset processing, and input padding.
 
-- *train.py*: This script is used to train an image captioning model using a CNN-to-RNN architecture. It loads the dataset of images and captions, creates the necessary data loader, initializes the model, loss function, scheduler and optimizer. The script then performs the training loop for the specified number of epochs, logging the training loss using TensorBoard. At the end of training, it saves the final model checkpoint and plots the training loss curve.
+- **utils.py**: Contains utility functions for model checkpoint saving and loading.
 
-- *evaluation.py*: this script is used to plot images along ith their predicted captions and actual captions as qualitative evaluation and BLEU score as a quantiative evaluation
+- **train.py**: Implements the training pipeline including model initialization, training loop, loss tracking, and model saving.
 
-## Requirements
+- **evaluation.py**: Provides both qualitative (image and predicted/actual captions) and quantitative (BLEU score) model evaluation.
 
-You will need to download the images and the captions using the following link that will take you to a floder in google drive with the images and the captions splited. For this model you should use the file with all captions and all the images, not the validation nor the train.
+## Prerequisites
 
-[flickr Dataset](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing)
+Prior to running the code, please ensure you have the following:
 
-You will need and environment that contains the following libaries, packages and frameworks: 
-```
-pytorch, spacy, os, pandas, numpy, PIL (pillow).
-```
-You will also need to download the 'en_core_web_sm' language model from spacy to get the vocabulary from the captions using:
+1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1skoIZFClsh_Ol-wiwG_Foo53BQF8KOMW?usp=sharing).
+2. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
+3. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
 
-```
-python -m spacy download en_core_web_sm
-```
+## Extending the Model
 
-## Using different datasets
+We encourage exploration and modifications to improve the model. We attempted different configurations and data sources in pursuit of optimal performance. Our optimal configuration was found to be:
 
-In order to make the model more robust and get better results, we tried to train our model with different dataset such as COCO or Flickr30k but we experimented some problems when loading the data and the formats of the data were different. We tried to change the format of the data and upload all images, but during the training we got problems when loading some images.
+- Embedding size: 128
+- Hidden size: 512
+- Batch size: 32
+- Learning rate: 1e-4
+- Number of LSTM layers: 1
+- Scheduler: With gamma = 0.9 and step_size = 1
+- Dropout: Included in various RNN layers
+- Batch normalization: Not included
 
-## Trying different configurations
+## Guided Run-through
 
-We tried different embedding and hidden size for the models, different learning rates, different batch size, different number of layers, we tried to train the model with scheduler and without scheduler and the best results we obtained has this configuration:
- - embedding size = 128
- - hidden size = 512
- - batch size = 32
- - learning rate = 1e-4
- - num layers = 1
- - scheduler = with gamma = 0.9 and step_size = 1
- - dropout = There are dropouts in many layers in the RNN
- - Batch normalization = False
+For a detailed walkthrough of the entire process, refer to our Python Notebook. It provides step-by-step instructions, from initialization to model evaluation, facilitating an effective understanding of the Image Captioning model.
 
-## Python Notebook  
-
-To make your life easier we mount all python files in a notebook. So you can go running cell by cell and seeing the results (We deliver it already runned, in case you dont want to run it all again). All files needed will be requested while running the ipynb.
