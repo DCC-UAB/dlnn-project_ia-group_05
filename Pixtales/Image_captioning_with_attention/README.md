@@ -47,4 +47,4 @@ For a detailed walkthrough of the entire process, refer to our Python Notebook. 
 
 ## Qualitative evaluation
 
-Qualitative evaluation for our image captioning model with attention can be found on these slides: [Qualitative evaluation attention](https://docs.google.com/presentation/d/12JIvFaUerl8xQFJnY5fT7xTXw3kX638slbluTsOe_fc/edit?usp=sharing))
+Qualitative evaluation for our image captioning model with attention can be found on these slides: [Qualitative evaluation attention](https://docs.google.com/presentation/d/12JIvFaUerl8xQFJnY5fT7xTXw3kX638slbluTsOe_fc/edit?usp=sharing)
