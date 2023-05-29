@@ -47,7 +47,7 @@ Then, the terminal will ask you to enter the paths to load the images for traini
 
 From now on, you will see the that the training is running and some prints of the loss evolution, the epoch and the step.
 
-At every epoch the model will be saved in a pth file. At the end of the training you will see a plot with the evolution of the training and validation loss. During the validation we save the BLEU scores with the corresponding captions to keep the best 5 captions.
+At every epoch the model will be saved in a pth file. At the end of the training you will see a plot with the evolution of the training and validation loss. During the validation we save the BLEU scores with the corresponding captions to keep the best captions.
 
 Then, you can use the checkpoint to evaluate the model in the evaluation.py, which will ask you to enter the path for the model and it will show some examples with the generated caption with the corresponding BLEU score and the correct caption from the ground truth.
 
