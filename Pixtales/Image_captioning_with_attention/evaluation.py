@@ -1,6 +1,6 @@
-from utils_attention import save_checkpoint, load_checkpoint
-from get_loader_attention import get_loader
-from model_attention import CNNtoRNN
+from utils import save_checkpoint, load_checkpoint
+from get_loader import get_loader
+from model import CNNtoRNN
 
 
 import torch
