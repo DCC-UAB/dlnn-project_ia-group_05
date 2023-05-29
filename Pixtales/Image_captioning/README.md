@@ -17,7 +17,7 @@ This folder contains the following files:
 
 - *train.py*: This script is used to train an image captioning model using a CNN-to-RNN architecture. It loads the dataset of images and captions, creates the necessary data loader, initializes the model, loss function, and optimizer. The script then performs the training loop for the specified number of epochs, logging the training loss using TensorBoard. At the end of training, it saves the final model checkpoint and plots the training loss curve.
 
-- *evaluation.py*: ...
+- *evaluation.py*: 
 
 ## - Requirements
 
@@ -34,4 +34,27 @@ You will also need to download the 'en_core_web_sm' language model from spacy to
 ```
 python -m spacy download en_core_web_sm
 ```
+
+## - Using different datasets
+
+In order to make the model more robust and get better results, we tried to train our model with different dataset such as COCO or Flickr30k but we experimented some problems when loading the data and the formats of the data were different. We tried to change the format of the data and upload all images, but during the training we got problems when loading some images.
+
+## - Trying different configurations
+
+We tried different embedding and hidden size for the models, different learning rates, different batch size, different number of layers, we tried to train the model with scheduler and without scheduler and the best results we obtained has this configuration:
+ - embedding size = 256
+ - hidden size = 256
+ - batch size = 32
+ - learning rate = 3e-4
+ - num layers = 1
+ - scheduler = False
+ - dropout = 0.5
+ - Batch normalization = True
+
+## App
+
+##
+
+
+
 
