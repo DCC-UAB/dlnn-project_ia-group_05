@@ -38,7 +38,7 @@ We encourage exploration and modifications to improve the model. We attempted di
 - Learning rate: 1e-4
 - Number of LSTM layers: 1
 - Scheduler: With gamma = 0.9 and step_size = 1
-- Dropout: Included in various RNN layers
+- Dropout: Included in RNN layer
 - Batch normalization: Not included
 
 ## Guided Run-through
