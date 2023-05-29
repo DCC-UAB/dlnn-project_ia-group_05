@@ -1,6 +1,6 @@
 # Image Captioning
 
-## - Content
+## Content
 
 This folder contains the following files:
 
@@ -22,9 +22,9 @@ This folder contains the following files:
 
 - *train.py*: This script is used to train an image captioning model using a CNN-to-RNN architecture. It loads the dataset of images and captions, creates the necessary data loader, initializes the model, loss function, scheduler and optimizer. The script then performs the training loop for the specified number of epochs, logging the training loss using TensorBoard. At the end of training, it saves the final model checkpoint and plots the training loss curve.
 
-- *evaluation.py*: 
+- *evaluation.py*: this script is used to plot images along ith their predicted captions and actual captions as qualitative evaluation and BLEU score as a quantiative evaluation
 
-## - Requirements
+## Requirements
 
 You will need to download the images and the captions using the following link that will take you to a floder in google drive with the images and the captions splited. For this model you should use the file with all captions and all the images, not the validation nor the train.
 
@@ -56,6 +56,6 @@ We tried different embedding and hidden size for the models, different learning 
  - dropout = There are dropouts in many layers in the RNN
  - Batch normalization = False
 
-## App
+## Python Notebook  
 
-##
+To make your life easier we mount all python files in a notebook. So you can go running cell by cell and seeing the results (We deliver it already runned, in case you dont want to run it all again). All files needed will be requested while running the ipynb.
