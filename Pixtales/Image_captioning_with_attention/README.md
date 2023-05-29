@@ -12,13 +12,13 @@ This repository includes the following key files:
   - `AdditiveAttention`: Executes additive attention between image feature vectors and previous hidden states.
   - `CNNtoRNN`: A unified model class that combines the functionality of the encoder and decoder.
 
-- **get_loader.py**: Constructs DataLoader for the project, containing classes for vocabulary creation, dataset processing, and input padding.
+- `get_loader.py`: Constructs DataLoader for the project, containing classes for vocabulary creation, dataset processing, and input padding.
 
-- **utils.py**: Contains utility functions for model checkpoint saving and loading.
+- `utils.py`: Contains utility functions for model checkpoint saving and loading.
 
-- **train.py**: Implements the training pipeline including model initialization, training loop, loss tracking, and model saving.
+- `train.py`: Implements the training pipeline including model initialization, training loop, loss tracking, and model saving.
 
-- **evaluation.py**: Provides both qualitative (image and predicted/actual captions) and quantitative (BLEU score) model evaluation.
+- `evaluation.py`: Provides both qualitative (image and predicted/actual captions) and quantitative (BLEU score) model evaluation.
 
 ## Prerequisites
 
