@@ -43,7 +43,7 @@ python -m spacy download en_core_web_sm
 
 ### Execution
 
-After setting up the environment and downloading the language model, execute the following command in the terminal:
+After setting up the environment and downloading the language model, execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder:
 ```
 python train.py
 ```
