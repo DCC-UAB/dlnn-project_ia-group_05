@@ -21,7 +21,7 @@ This folder contains the following files:
 
 ## - Requirements
 
-You will need to download the images and the captions using the following link that will take you to a floder in google drive with the images and the captions splited.
+You will need to download the images and the captions using the following link that will take you to a floder in google drive with the images and the captions splited. For this model you should use the training images and captions, and the validation images and captions splited. There is a file with all captions that you don't need for this model.
 
 [flickr Dataset](link)
 
@@ -34,6 +34,20 @@ You will also need to download the 'en_core_web_sm' language model from spacy to
 ```
 python -m spacy download en_core_web_sm
 ```
+
+## Execution
+
+After setting up the environment and downloading the language model you should execute 
+
+```
+python train.py
+```
+
+Then, the terminal will ask you to enter the paths to load the images for training and a path for the images for validation, then, a path for the training captions and a path for the validation captions.
+
+From now on, you will see the that the training is running and some prints of the loss evolution, the epoch and the step.
+
+At every epoch the model will be saved in a pth file. At the end of the training you will see a plot with the evolution of the training and validation loss. During the validation we save the BLEU scores with the corresponding captions to keep the best 5 captions.
 
 ## - Using different datasets
 
