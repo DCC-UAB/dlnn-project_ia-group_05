@@ -68,6 +68,10 @@ To run `evaluation.py` is as easy as this:
 ```
 python evaluation.py
 ```
+## Architecture
+We thought that it´d be nice to see a scheme of the architecture:
+
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/151feb07-7da3-448f-894d-13763b19da65)
 
 ## Extending the Model
 
