@@ -108,3 +108,5 @@ But here we leave some:
 
 <img width="541" alt="image" src="https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/3c7f3c5c-d833-4c15-8774-0afa03928247">
 
+
+The quantitative analysis is done looking at the BLEU scores (our own built BLEU-1 scoring function)
