@@ -16,11 +16,8 @@ class EncoderCNN(nn.Module):
 
         # Activation function and dropout layer
         self.relu = nn.ReLU()
-        
-        # Dropout to make the network more robust
         self.dropout = nn.Dropout(p_dropout)
-        
-        self.batch_norm = nn.BatchNorm2d(embed_size)  # Batch Normalization layer
+        self.batch_norm = nn.BatchNorm1d(embed_size)  # Batch Normalization layer
   
     def forward(self, images):
         # Extract features from the images using the ResNet-50 model
@@ -32,12 +29,10 @@ class EncoderCNN(nn.Module):
                 parameter.requires_grad = True
             else:
                 parameter.requires_grad = self.train_CNN
-
         # Apply ReLU activation function and dropout to the features and Batch Norm
         features = self.batch_norm(features)
         return self.dropout(self.relu(features))    					
-
-      
+    
 class DecoderRNN(nn.Module):
     def __init__(self, embed_size, hidden_size, vocab_size, num_layers, p_dropout=0.5):
         super(DecoderRNN, self).__init__()
@@ -52,7 +47,10 @@ class DecoderRNN(nn.Module):
         self.linear = nn.Linear(hidden_size, vocab_size)
 
         # Dropout layer
-        self.dropout = nn.Dropout(p_dropout)   
+        self.dropout = nn.Dropout(p_dropout)
+
+
+        
 
     def forward(self, features, captions):
         # Embed the captions
@@ -74,8 +72,10 @@ class DecoderRNN(nn.Module):
         outputs = self.linear(hiddens)
 
         return outputs
+    
 
-      
+
+
 class CNNtoRNN(nn.Module):
     def __init__(self, embed_size, hidden_size, vocab_size, num_layers):
         super(CNNtoRNN, self).__init__()
@@ -117,11 +117,26 @@ class CNNtoRNN(nn.Module):
                 
                 # Pass the LSTM output through the linear layer to get the output logits
                 output = self.DecoderRNN.linear(hiddens.unsqueeze(0))
+                #print is to debug
+                #print(output.shape)
                 
                 # Get the predicted word by taking the index of the highest logit value
+
                 predicted = output.argmax(2).squeeze()
                 #is argmax(2) bc due to previous unsqueeze the shape is [1,1,2994] instead of [1,2994]
                 #Also is worth to note that the squeeze is used to lower one dimension for inputting it to the lstm which takes at most 3dimensions
+                
+                '''
+                ANOTHER OPTION WOULD BE TO GET THE PREDICTED WORD SAMPLING INSTEAD OF THE PREVIOUS GREEDY APPROACH
+                (neil: a mi me gusta más, decid vosotros,
+                 dani: Tb me gusta mas)
+                
+                # Apply softmax to convert output logits to probabilities
+        		probs = output.squeeze(0).softmax(dim=0)
+
+        		# Sample a word index from the output probabilities
+        		predicted = Categorical(probs).sample().item()
+                '''
                 
                 # Append the predicted word index to the result caption list
                 result_caption.append(predicted.item())
