@@ -124,18 +124,11 @@ if __name__ == "__main__":
     )
 
 
-    images_path_train = input("Enter the images path (or press Enter to use the default path): ")
-    annotations_path_train = input("Enter the annotations path (or press Enter to use the default path): ")
+    images_path_train = input("Enter the images path for training: ")
+    annotations_path_train = input("Enter the annotations path for training: ")
 
-    if not images_path_train:
-        images_path_train = "./image_captioning_splitted/8k/Train/Images_train"
-
-    if not annotations_path_train:
-        annotations_path_train = "./image_captioning_splitted/8k/Train/captions_train.txt"
-
-
-    images_path_val = "./image_captioning_splitted/8k/Val/Images_val" 
-    annotations_path_val = "./image_captioning_splitted/8k/Val/captions_val.txt"
+    images_path_val = input('Enter the images path for validation: ')
+    annotations_path_val = input('Enter the annotation path for validation: ')
 
     # Set CUDA benchmark for improved performance
     torch.backends.cudnn.benchmark = True
@@ -170,10 +163,13 @@ if __name__ == "__main__":
     model = CNNtoRNN(embed_size, hidden_size, vocab_size, num_layers).to(device)
     criterion = nn.CrossEntropyLoss(ignore_index=dataset.vocab.stoi["<PAD>"])  # Ignore padding tokens in the loss calculation
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    load_model = True
     val_dataset.vocab = dataset.vocab
+    
+    load_model = False # You should change this to 'True' if you want to use a pretrained model with a checkpoint.
+    
     if load_model == True:
-        step = load_checkpoint(torch.load("./checkpoints/final_checkpoint3.pth"), model, optimizer)
+        checkpoint_path = input('Enter checkpoint path: ')
+        step = load_checkpoint(torch.load(checkpoint_path), model, optimizer)
 
     #Keep track of the losses for each epoch
     total_loss = {'train': [], 'val': []}
