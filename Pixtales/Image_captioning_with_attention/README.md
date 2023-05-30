@@ -50,7 +50,7 @@ Prior to running the code, please ensure you have the following:
 
 **To avoid the whole manual process we really, highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
 
- In case you finally chose to avoid the guided run through: After setting up the environment and downloading the [requirements](#Requirements), execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder:
+ In case you finally chose to avoid the guided run through: After setting up the environment and downloading the [requirements](#Requirements), execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder) for training, also you can load the checkpoint for starting the training from the last checkpoint but it **may lead to overfitting**:
 ```
 python train.py
 ```
@@ -61,12 +61,12 @@ Once the training starts, you will see the progress in the terminal, including l
 
 At the end of each epoch, the model will be saved in a .pth file. After training completes, a plot showing the training and validation loss curves will be displayed.
 
-Use the saved checkpoint to evaluate the model by running the `evaluation.py` script. It will prompt you to enter the path to the model checkpoint and display generated captions along with their corresponding BLEU scores and ground truth captions.
+Use the saved checkpoint to evaluate the model by running the `evaluation.py` script. It will ask you to enter the path to the model checkpoint and display generated captions along with their corresponding BLEU scores and ground truth captions.
 
 To run `evaluation.py` is as easy as this:
 
 ```
-pyton evaluation.py
+python evaluation.py
 ```
 
 ## Extending the Model
