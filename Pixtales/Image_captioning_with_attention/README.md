@@ -41,6 +41,7 @@ Prior to running the code, please ensure you have the following:
 1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1x2pDFbpIsA8fCUomwBpo6wBy0Yw9LFF_?usp=sharing).
 2. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
 3. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
+4. Here you can download the last checkpoint that will save you the training tie: [attention checkpoint](https://drive.google.com/file/d/1-9Nod5adZa28ViHSY9QsmCNdV_hC_ofp/view?usp=sharing)
 
 ### Execution
 
