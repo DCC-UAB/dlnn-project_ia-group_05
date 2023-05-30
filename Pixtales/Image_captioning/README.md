@@ -80,7 +80,7 @@ Feel free to modify these parameters according to your specific needs and datase
 Finally, we wanted some visual way to show the results of our model. And we thought that creating an 'app' could be a great way to do it. The app folder consists in 3 python files:
 
 - **app.py**: This file contains the main commands and executations for the app to work, it holds the structure:
-  - Reads the model, you can download the last model we have trained using the following link [last model] (), also note that the parameters of the model such as     nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you ar read
+  - Reads the model, you can download the last model we have trained using the following link [last model] (), also note that the parameters of the model such as     nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you are reading
   - Perform the necessary calculations and calls the necessary files and functions
   - Alocates the port the web will be hosted
   - Defines which file is the home file, which html in this case should read.
@@ -111,9 +111,12 @@ And finally a .txt file:
 
 #### APP WORKING PROPERLY
 
-When runing the `app.py` file, some warnings will show up in the console, do not worry those warnings are because of loading the model. When the model is loaded you should see "Checkpoint loaded!" on your screen, after that a url will appear in the form of "http://localhost:5000" or "http://127.0.0.1:5000", acces to that url and if everything is correct, the app interface should appear. 
+- When runing the `app.py` file, some warnings will show up in the console, do not worry those warnings are because of loading the model. When the model is loaded you should see "Checkpoint loaded!" on your screen, after that a url will appear in the form of "http://localhost:5000" or "http://127.0.0.1:5000", acces to that url and if everything is correct, the app interface should appear. 
 
-When dealing with images, just press the select image button and an image from the local machine will be chosen. After that, click the upload button and just wait for the caption and the image to pop up. 
+- When dealing with images, just press the select image button and an image from the local machine will be chosen. After that, click the upload button and just wait for the caption and the image to pop up. 
+
+- If another model is trying to be loaded and there is no sucess, check in the `app.py` if the parameters of the model are equal to the model the user is trying to load.
+
 
 #### APP POSSIBLE ERRORS AND CLARIFICATIONS
 
