@@ -162,7 +162,7 @@ Now we will look into the the bleu score: for the last epoch we can see some int
   
 This is a dictionary with the caption as key and the bleu score as value, we can see that most of the setences could be perfectly a valid caption except for some of them that repeat words or mention that a man has 2 different shirts or other things that do not make a lot of sense but because the bleu score is comparing words, they are still a pretty valid ones since most of the sentece could be a caption.
   
-And finally the image caption evaluation. Remember how we said the loss would get down really slow, about 0.03 for each epoch at the end. We think we are falling into a local minima or some place that leads to a solution that looks tribial to the model since most of the time, the caption is the same:
+And finally the image caption evaluation. Remember how we said the loss would get down really slow, about 0.03 for each epoch at the end. We think we are falling into a local minima or some place that leads to a solution that looks trivial to the model since most of the time, the caption look almost the same:
   
 ![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/48a7722e-e572-4b25-b66b-a44656725153)
 
@@ -172,6 +172,8 @@ And finally the image caption evaluation. Remember how we said the loss would ge
 
 
 We can summarize that most of the captions that the model generates TRHOUGH THE APP on these 3 captions, as you can see, not good results at at all. Maybe one of the issues is the app itself and the way it generates the captions but otherwise it looks like it is falling into a local minimum or is lacking expressivity as all these 3 captions are the vast majority.
+  
+Main problems are lack of data, not enough complexity and time, probably with more epochs slightly better captions would have been generated for validation images.
 
 
 
