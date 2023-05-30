@@ -92,7 +92,7 @@ For a detailed walkthrough of the entire process, refer to our Python Notebook. 
 
 ## Comments on Attention
 
-Attention works amazingly fine, that fine that it overfits too fast, that´s why we had to add an exagerated amount of regularization, trying to control the beast. Luckily we were able to avoid some of this overfitting and it should generalize well. Nevertheless we tested on training set due to time issues.
+Attention works amazingly fine, that fine that it overfits too fast, that´s why we had to add an exagerated amount of regularization, trying to control the beast. Luckily we were able to avoid some of this overfitting and it should generalize well. Nevertheless we tested on training set due to time issues and we were not able to make it for the attention maps, which would have been great for explainability.
 
 ## Qualitative evaluation
 
