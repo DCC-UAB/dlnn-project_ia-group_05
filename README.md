@@ -23,7 +23,7 @@ You can get all the data you will need in the following folder from google drive
 First, you need to set clone this repository in your local (or virtual) machine
 
 ```
-git clone git@github.com:Neilus03/PIXTALES_Image-Captioning.git
+git@github.com:DCC-UAB/dlnn-project_ia-group_05.git
 ```
 
 You will need to install the needed libraries and set up a good environment with pytorch, spacy, PIL and many more. You will also need to download the en_core_web_sm language model using:
