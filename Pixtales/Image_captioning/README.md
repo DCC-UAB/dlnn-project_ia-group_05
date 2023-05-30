@@ -86,28 +86,28 @@ Finally, we wanted some visual way to show the results of our model. And we thou
   - Defines which file is the home file, which html in this case should read.
   - Generates the captions for the given images
 
--**model_val.py**: This file contains the structure of the model in different classes. The classes include:
+- **model_val.py**: This file contains the structure of the model in different classes. The classes include:
   - `encoderCNN`: A ResNet CNN pretrained on ImageNet that extracts features from the images.
   - `decoderRNN`: An LSTM network that generates words recursively using the image features and captions as inputs.
   - `CNNtoRNN`: Combines the functionality of `encoderCNN` and `decoderRNN` to encode images and captions and produce codified sentences.
 
--**utils_val**: This file has only 2 main things:
-  -`load_checkpoint`: This function allows us to load the model.
-  -`Vocabulary class`: to give to the loaded model.
+- **utils_val**: This file has only 2 main things:
+  - `load_checkpoint`: This function allows us to load the model.
+  - `Vocabulary class`: to give to the loaded model.
   
 Besides those 3 files, the app folder also has 3 folders:
 
--**__pycache__**: This folder is not used directly, it creates shortcuts so the app does not have to run from 0 every time we execute it. This is done automatically.
+- **__pycache__**: This folder is not used directly, it creates shortcuts so the app does not have to run from 0 every time we execute it. This is done automatically.
 
--**static**: This folder has 2 things:
-  -`Background`: The picture for the background of the app
-  -`Uploades`: This is a folder where all the uploaded pictures in the app will be alocated.
+- **static**: This folder has 2 things:
+  - `Background`: The picture for the background of the app
+  - `Uploades`: This is a folder where all the uploaded pictures in the app will be alocated.
   
--**templates**: This folder has only 1 file wich is called index, this index file is an html with the structrue of the whole interface for the app.
+- **templates**: This folder has only 1 file wich is called index, this index file is an html with the structrue of the whole interface for the app.
 
 And finally a .txt file:
 
--**captions.txt**: The file that contains all the captions from where the vocab will be extracted.
+- **captions.txt**: The file that contains all the captions from where the vocab will be extracted.
 
 #### APP WORKING PROPERLY
 
