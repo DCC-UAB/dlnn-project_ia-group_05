@@ -88,7 +88,7 @@ We encourage exploration and modifications to improve the model. We attempted di
 
 For a detailed walkthrough of the entire process, refer to our Python Notebook. It provides step-by-step instructions, from initialization to model evaluation, facilitating an effective understanding of the Image Captioning model:
 
-[Full guided notebook](https://colab.research.google.com/drive/1oNQmnL9KO0TSOi4bNFqvnAgi3FdRgI8V?authuser=4#scrollTo=TIU_x5x68vuw)
+[Full guided notebook](https://colab.research.google.com/drive/1oNQmnL9KO0TSOi4bNFqvnAgi3FdRgI8V?usp=sharing)
 
 ## Comments on Attention
 
