@@ -151,9 +151,13 @@ As we see, both losses go down slowly but steady. Of course the training loss is
 Now we will look into the the bleu score: for the last validation epoch we can see some interesting captions for the images
 
 {'<SOS> a man in a blue shirt and a black shirt is standing in front of a crowd . <EOS>': 0.9090909090909091,
+  
  '<SOS> a man in a black shirt and a black hat is standing in front of a building . <EOS>': 1.0,
+  
  '<SOS> a man in a blue shirt is standing on a bench with a <UNK> in the background . <EOS>': 0.928571428571428,
+  
  '<SOS> a man and a woman are sitting on a bench in front of a building . <EOS>': 0.82,
+  
  '<SOS> a man in a blue shirt is standing on a bench with a man in a black shirt . <EOS>': 1.0}
   
 This is a dictionary with the caption as key and the bleu score as value, we can see that most of the setences could be perfectly a valid caption except for some of them that repeat words or mention that a man has 2 different shirts or other things that do not make a lot of sense but because the bleu score is comparing words, they are still a pretty valid ones since most of the sentece could be a caption.
