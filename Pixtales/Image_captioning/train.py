@@ -12,7 +12,7 @@ from get_loader import get_loader
 from model import CNNtoRNN
 
 
-def train(num_epochs,epoch,model,criterion,optimizer,train_loader,step):
+def train(num_epochs,epoch,model,criterion,optimizer,train_loader):
     print('Training...')
     # Set flags for saving models
     
@@ -177,7 +177,7 @@ if __name__ == "__main__":
     print('Aleluya')
     for epoch in range(num_epochs):
         print('Epoch:',epoch)
-        train_loss = train(num_epochs,epoch,model,criterion,optimizer,train_loader,step)
+        train_loss = train(num_epochs,epoch,model,criterion,optimizer,train_loader)
         val_loss, bleu_dict = evaluate_model(model,val_dataset,device,val_loader,criterion)
         print(bleu_dict)
         total_loss["train"].append(train_loss)
