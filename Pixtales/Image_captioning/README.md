@@ -1,8 +1,19 @@
 # Image Captioning
 
-## Contents
+## Content
 
 This folder contains the code and files for the Image Captioning project, using a CNN and RNN. 
+
+## Table of Contents
+
+- [Files](#Files)
+- [Requirements](#Requirements)
+- [Installation and Usage](#Execution)
+- [Using different datasets](#Using-Different-Datasets)
+- [Configuration](#Trying-Different-Configurations)
+- [APP](#APP)
+- [QUANTITATIVE and QUALITATIVE ANALYSIS](#QUANTITATIVE-and-QUALITATIVE-ANALYSIS)
+
 
 ### Files
 
