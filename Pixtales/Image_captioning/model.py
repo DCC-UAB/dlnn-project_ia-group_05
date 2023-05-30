@@ -117,24 +117,11 @@ class CNNtoRNN(nn.Module):
                 
                 # Pass the LSTM output through the linear layer to get the output logits
                 output = self.DecoderRNN.linear(hiddens.unsqueeze(0))
-                #print is to debug
-                #print(output.shape)
                 
                 # Get the predicted word by taking the index of the highest logit value
-
                 predicted = output.argmax(2).squeeze()
                 #is argmax(2) bc due to previous unsqueeze the shape is [1,1,2994] instead of [1,2994]
                 #Also is worth to note that the squeeze is used to lower one dimension for inputting it to the lstm which takes at most 3dimensions
-                
-                '''
-                ANOTHER OPTION WOULD BE TO GET THE PREDICTED WORD SAMPLING INSTEAD OF THE PREVIOUS GREEDY APPROACH
-                
-                # Apply softmax to convert output logits to probabilities
-        		probs = output.squeeze(0).softmax(dim=0)
-
-        		# Sample a word index from the output probabilities
-        		predicted = Categorical(probs).sample().item()
-                '''
                 
                 # Append the predicted word index to the result caption list
                 result_caption.append(predicted.item())
