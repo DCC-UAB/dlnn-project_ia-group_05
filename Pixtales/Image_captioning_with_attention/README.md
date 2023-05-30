@@ -70,8 +70,9 @@ python evaluation.py
 ```
 ## Architecture
 We thought that it´d be nice to see a scheme of the architecture:
+<img width="561" alt="Captura de pantalla 2023-05-30 065228" src="https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/47a0ab20-d939-4bd1-acb5-139371030a27">
 
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/151feb07-7da3-448f-894d-13763b19da65)
+
 
 ## Extending the Model
 
