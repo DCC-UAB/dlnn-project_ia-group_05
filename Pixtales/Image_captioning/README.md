@@ -77,4 +77,48 @@ Feel free to modify these parameters according to your specific needs and datase
 
 ## APP
 
+Finally, we wanted some visual way to show the results of our model. And we thought that creating an 'app' could be a great way to do it. The app folder consists in 3 python files:
+
+- **app.py**: This file contains the main commands and executations for the app to work, it holds the structure:
+  - Reads the model, you can download the last model we have trained using the following link [last model] (), also note that the parameters of the model such as     nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you ar read
+  - Perform the necessary calculations and calls the necessary files and functions
+  - Alocates the port the web will be hosted
+  - Defines which file is the home file, which html in this case should read.
+  - Generates the captions for the given images
+
+-**model_val.py**: This file contains the structure of the model in different classes. The classes include:
+  - `encoderCNN`: A ResNet CNN pretrained on ImageNet that extracts features from the images.
+  - `decoderRNN`: An LSTM network that generates words recursively using the image features and captions as inputs.
+  - `CNNtoRNN`: Combines the functionality of `encoderCNN` and `decoderRNN` to encode images and captions and produce codified sentences.
+
+-**utils_val**: This file has only 2 main things:
+  -`load_checkpoint`: This function allows us to load the model.
+  -`Vocabulary class`: to give to the loaded model.
+  
+Besides those 3 files, the app folder also has 3 folders:
+
+-**__pycache__**: This folder is not used directly, it creates shortcuts so the app does not have to run from 0 every time we execute it. This is done automatically.
+
+-**static**: This folder has 2 things:
+  -`Background`: The picture for the background of the app
+  -`Uploades`: This is a folder where all the uploaded pictures in the app will be alocated.
+  
+-**templates**: This folder has only 1 file wich is called index, this index file is an html with the structrue of the whole interface for the app.
+
+And finally a .txt file:
+
+-**captions.txt**: The file that contains all the captions from where the vocab will be extracted.
+
+#### APP WORKING PROPERLY
+
+When runing the `app.py` file, some warnings will show up in the console, do not worry those warnings are because of loading the model. When the model is loaded you should see "Checkpoint loaded!" on your screen, after that a url will appear in the form of "http://localhost:5000" or "http://127.0.0.1:5000", acces to that url and if everything is correct, the app interface should appear. 
+
+When dealing with images, just press the select image button and an image from the local machine will be chosen. After that, click the upload button and just wait for the caption and the image to pop up. 
+
+#### APP POSSIBLE ERRORS AND CLARIFICATIONS
+
+For correct usage, we want to execute the `app.py` file from the previous directory of the app folder, in this case from Image_captioning because of how the directories are implemented in the code. Otherwise if facing problems with directories, all the directories that must be changed for proper working are in the `app.py` file. 
+
+Also it can happen that the port where the web has to be located is already used, some warning saying so will show up. To solve this issue just go ahead to the very last line of code of the `app.py` and change the port variable to change the port where the web will be alocated.
+
 
