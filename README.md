@@ -33,8 +33,17 @@ You will need to install the needed libraries and set up a good environment with
 python -m spacy download en_core_web_sm
 ```
 
-Next, to run the example code, simply use:
+Next, to train either of the models, use:
 
+for model without attention:
+```
+cd Pixtales/Image_captioning 
+```
+for model with attention: 
+```
+cd Pixtales/Image_captioning_with_attention
+```
+then:
 ```
 python train.py
 ```
