@@ -80,7 +80,7 @@ Feel free to modify these parameters according to your specific needs and datase
 Finally, we wanted some visual way to show the results of our model. And we thought that creating an 'app' could be a great way to do it. The app folder consists in 3 python files:
 
 - **app.py**: This file contains the main commands and executations for the app to work, it holds the structure:
-  - Reads the model, you can download the last model we have trained using the following link [last model](https://drive.google.com/file/d/1mVPKUfm5HLlzx0Rwmtp5aj3zAUmqAeH1/view?usp=drive_link), also note that the parameters of the model such as nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you are reading
+  - Reads the model, you can download the last model we have trained using the following link: [last model](https://drive.google.com/file/d/1mVPKUfm5HLlzx0Rwmtp5aj3zAUmqAeH1/view?usp=drive_link) , also note that the parameters of the model such as nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you are reading
   - Perform the necessary calculations and calls the necessary files and functions
   - Alocates the port the web will be hosted
   - Defines which file is the home file, which html in this case should read.
