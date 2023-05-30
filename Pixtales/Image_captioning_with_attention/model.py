@@ -70,14 +70,14 @@ class DecoderRNN(nn.Module):
         # This layer is used to map the output of the LSTM into the size of the vocabulary
         # This will give us the scores for each word in the vocabulary being the next word in the caption,
         # that later should be passed through a softmax to turn the scores into probabilities
-        self.linear = nn.Linear(hidden_size, vocab_size)
+        self.linear = nn.Linear(feature_map_depth, vocab_size)
         
         # Dropout layer
         self.dropout = nn.Dropout(dropout_p)
 
         # Attention layer is used to compute the attention weights and the context vector from encoder features and the previous hidden state of the LSTM
         # Here, we are assuming that the size of the encoder features is equal to the hidden state size of the LSTM for simplicity (both 512)
-        self.attention = AdditiveAttention(hidden_size, hidden_size) # Using hidden_size as feature_map_depth for simplicity as both have the same value (512)
+        self.attention = AdditiveAttention(feature_map_depth, feature_map_depth) # Using hidden_size as feature_map_depth for simplicity as both have the same value (512)
 
     def forward(self, features, captions):
         # Compute the word embeddings of the captions
