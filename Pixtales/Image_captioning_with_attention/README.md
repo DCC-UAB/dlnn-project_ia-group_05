@@ -46,7 +46,7 @@ Prior to running the code, please ensure you have the following:
 4. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
 
 
-### Execution
+## Execution
 
 **We really, highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
 
