@@ -15,11 +15,11 @@ def train():
     images_path = input("Enter the images path (or press Enter to use the default path): ")
     annotations_path = input("Enter the annotations path (or press Enter to use the default path): ")
 
-    #if not images_path:
-    images_path = "/content/drive/MyDrive/IMAGE CAPTIONING/flickr8k_images"
+    if not images_path:
+        images_path = "/content/drive/MyDrive/IMAGE CAPTIONING/flickr8k_images"
 
-    #if not annotations_path:
-    annotations_path = "/content/drive/MyDrive/IMAGE CAPTIONING/captions.txt"
+    if not annotations_path:
+        annotations_path = "/content/drive/MyDrive/IMAGE CAPTIONING/captions.txt"
 
     # Get the data loader and dataset
     loader, dataset = get_loader(
