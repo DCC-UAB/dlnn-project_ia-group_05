@@ -50,9 +50,7 @@ Prior to running the code, please ensure you have the following:
 
 **To avoid the whole manual process we really, highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
 
-
-
-After setting up the environment and downloading the [requirements](#Requirements), execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder:
+ In case you finally chose to avoid the guided run through: After setting up the environment and downloading the [requirements](#Requirements), execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder:
 ```
 python train.py
 ```
