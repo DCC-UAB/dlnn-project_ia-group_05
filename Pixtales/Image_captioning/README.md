@@ -111,6 +111,8 @@ And finally a .txt file:
 
 #### APP WORKING PROPERLY
 
+- All the previous requirements are recommended to have, and also for the app, we will need to install another library called `flask`. So besides all the other libraries, packages and frameworks the app will be also using `flask`.
+
 - When runing the `app.py` file, some warnings will show up in the console, do not worry those warnings are because of loading the model. When the model is loaded you should see "Checkpoint loaded!" on your screen, after that a url will appear in the form of "http://localhost:5000" or "http://127.0.0.1:5000", acces to that url and if everything is correct, the app interface should appear. 
 
 - When dealing with images, just press the select image button and an image from the local machine will be chosen. After that, click the upload button and just wait for the caption and the image to pop up. 
