@@ -96,7 +96,7 @@ Attention works amazingly fine, that fine that it overfits too fast, that´s why
 
 ## Qualitative evaluation
 
-Qualitative evaluation for our image captioning model with attention can be found on these slides: [Qualitative evaluation attention](https://docs.google.com/presentation/d/12JIvFaUerl8xQFJnY5fT7xTXw3kX638slbluTsOe_fc/edit?usp=sharing)
+A further qualitative evaluation for our image captioning model with attention can be found on these slides: [Qualitative evaluation attention](https://docs.google.com/presentation/d/12JIvFaUerl8xQFJnY5fT7xTXw3kX638slbluTsOe_fc/edit?usp=sharing)
 <img width="537" alt="Captura de pantalla 2023-05-30 010402" src="https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/39ac7196-de89-4172-8618-3a55e7ad2a04">
 
 <img width="567" alt="image" src="https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/87651732/320be3f8-4d90-4ac4-88be-6678c25a6335">
