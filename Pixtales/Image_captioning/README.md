@@ -152,7 +152,7 @@ And finally the image caption evaluation. Remember how we said the loss would ge
 ![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/2d888667-d577-4303-84f6-69b0784fb568)
 
 
-We can summary most of the captions that the model generates TRHOUGH THE APP on these 3 captions. Maybe one of the issues is the app itself and the way it generates the captions but otherwise it looks like it is falling into a local minimum where all these 3 captions are the vast majority.
+We can summarize that most of the captions that the model generates TRHOUGH THE APP on these 3 captions, as you can see, not good results at at all. Maybe one of the issues is the app itself and the way it generates the captions but otherwise it looks like it is falling into a local minimum or is lacking expressivity as all these 3 captions are the vast majority.
 
 
 
