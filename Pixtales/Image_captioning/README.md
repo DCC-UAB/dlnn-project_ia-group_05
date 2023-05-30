@@ -148,7 +148,7 @@ Starting with the plot, first we need to see how both losses behavead:
 
 As we see, both losses go down slowly but steady. Of course the training loss is lower than the validation loss but still both were going down. This slowlyness can mean some things, either the learning rate is low, or we landed in a semi-plateaux and it is getting hard to get out of there because the learning rate is low or because the model would need more expresivity to perform better , we think it may be this, also we should note that we have tried different hyperparameters and we had models that worked better before, nonetheless we decided to leave this because it had a proper validation and was not being validated on the training set, this also means that the model is being trained with less pictures which also leads to lower performance.
 
-Now we will look into the the bleu score: for the last training epoch we can see some interesting captions for the images
+Now we will look into the the bleu score: for the last epoch we can see some interesting captions for the images
 
 {'<SOS> a man in a blue shirt and a black shirt is standing in front of a crowd . <EOS>': 0.9090909090909091,
   
