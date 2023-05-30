@@ -44,6 +44,8 @@ Prior to running the code, please ensure you have the following:
 
 ### Execution
 
+**We really, highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
+
 After setting up the environment and downloading the language model, execute the following command in the terminal (inside the `Ìmage_captioning_with_attention` folder:
 ```
 python train.py
