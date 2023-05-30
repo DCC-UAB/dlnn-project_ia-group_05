@@ -8,10 +8,9 @@ def save_checkpoint(state, filename="checkpoint.pth"):
     print("Checkpoint saved!")
 
 # Load model state from file
-def load_checkpoint(checkpoint, model, optimizer, scheduler):
+def load_checkpoint(checkpoint, model, optimizer):
     model.load_state_dict(checkpoint['state_dict'])  # Load model parameters
     optimizer.load_state_dict(checkpoint['optimizer'])  # Load optimizer state
-    scheduler.load_state_dict(checkpoint['scheduler'])  # Load scheduler state
     step = checkpoint['step']  # Retrieve step number
     print("Checkpoint loaded!")
     return step
