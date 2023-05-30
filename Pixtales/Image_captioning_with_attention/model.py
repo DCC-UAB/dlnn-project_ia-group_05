@@ -65,7 +65,7 @@ class DecoderRNN(nn.Module):
         self.embed = nn.Embedding(vocab_size, embed_size) 
 
         # LSTM layer: takes both word embeddings and the context vector as input, hence input size is embed_size + feature_map_depth
-        self.lstm = nn.LSTM(embed_size + feature_map_depth, hidden_size, num_layers, batch_first=True, dropout=dropout_p if num_layers > 1 else 0) # Apply dropout between LSTM layers if num_layers > 1
+        self.lstm = nn.LSTM(embed_size + feature_map_depth, feature_map_depth, num_layers, batch_first=True, dropout=dropout_p if num_layers > 1 else 0) # Apply dropout between LSTM layers if num_layers > 1
 
         # This layer is used to map the output of the LSTM into the size of the vocabulary
         # This will give us the scores for each word in the vocabulary being the next word in the caption,
