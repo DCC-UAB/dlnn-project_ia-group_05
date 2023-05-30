@@ -33,15 +33,18 @@ This repository includes the following key files:
 
 ## Requirements
 
+### Mandatory
+1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1x2pDFbpIsA8fCUomwBpo6wBy0Yw9LFF_?usp=sharing).
+2. Here you can download the last checkpoint that will save you the training time: [attention checkpoint](https://drive.google.com/file/d/1-9Nod5adZa28ViHSY9QsmCNdV_hC_ofp/view?usp=sharing)
+
 **We highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
 
-
+### In case you don´t want to go for the guided run through: 
 Prior to running the code, please ensure you have the following:
 
-1. Download the required images and captions from the provided [Flickr Dataset](https://drive.google.com/drive/folders/1x2pDFbpIsA8fCUomwBpo6wBy0Yw9LFF_?usp=sharing).
-2. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
-3. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
-4. Here you can download the last checkpoint that will save you the training tie: [attention checkpoint](https://drive.google.com/file/d/1-9Nod5adZa28ViHSY9QsmCNdV_hC_ofp/view?usp=sharing)
+3. Prepare an environment with necessary libraries including `pytorch`, `spacy`, `os`, `pandas`, `numpy`, `PIL (pillow)`.
+4. Download Spacy's 'en_core_web_sm' model using `python -m spacy download en_core_web_sm`.
+
 
 ### Execution
 
