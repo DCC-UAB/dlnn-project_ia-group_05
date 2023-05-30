@@ -48,7 +48,7 @@ Prior to running the code, please ensure you have the following:
 
 ## Execution
 
-**We really, highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
+**To avoid the whole manual process we really, highly recommend and encourage you to directly go to the [Guided Run - Through](#Guided-Run-Through)**
 
 
 
