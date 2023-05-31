@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pixtales</title>
+    <title>Image Captioning Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -30,36 +30,47 @@
     </script>
     <style>
         body {
-            background-color: #035b7b; /* Green background */
-        }
-
-        #title {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        #subtitle {
-            text-align: center;
-        }
-
-        #upload-form {
-            text-align: center;
-            margin-top: 50px;
+            background-image: url("{{ url_for('static', filename='Background.jpeg') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            
         }
 
         #predicted-result {
             display: none;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        form {
+            text-align: center;
+            color: white;
+        }
+
+        .custom-upload-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .custom-upload-button:hover {
+            background-color: #45a049;
+        }
+
+        .custom-file-input {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1 id="title">Pixtales</h1>
-    <h2 id="subtitle">The story behind the images</h2>
-    <form id="upload-form" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
-        <button type="submit">Upload</button>
+    <form id="upload-form" enctype="multipart/form-data" style="text-align: center;">
+        <label for="image-upload" class="custom-upload-button">Select an Image</label>
+        <input id="image-upload" type="file" name="image" accept="image/*" class="custom-file-input" required>
+        <button type="submit" class="custom-upload-button">Upload</button>
     </form>
     <div id="predicted-result">
         <h2>Predicted Caption:</h2>
