@@ -177,10 +177,6 @@ And finally the image caption evaluation. Remember how we said the loss would ge
 
 
 
-We can summarize that most of the captions that the model generates TRHOUGH THE APP on these 3 captions, as you can see, not good results at at all. Maybe one of the issues is the app itself and the way it generates the captions but otherwise it looks like it is falling into a local minimum or is lacking expressivity as all these 3 captions are the vast majority.
-  
-Main problems are lack of data, not enough complexity and time, probably with more epochs slightly better captions would have been generated for validation images.
-
 
 
 
