@@ -60,18 +60,6 @@ class Vocabulary:
                 tokens.append(self.stoi["<UNK>"])
         return tokens
 
-def save_checkpoint(state, filename="checkpoint.pth"):
-    """
-    Save the model checkpoint to a file.
-    
-    Args:
-        state (dict): The state dictionary containing model parameters and optimizer state.
-        filename (str): The filename to save the checkpoint.
-    """
-    torch.save(state, filename)
-    print("Checkpoint saved!")
-
-
 def load_checkpoint(checkpoint, model, optimizer):
     """
     Load the model checkpoint from a file.
@@ -89,4 +77,3 @@ def load_checkpoint(checkpoint, model, optimizer):
     step = checkpoint['step']
     print("Checkpoint loaded!")
     return step
-

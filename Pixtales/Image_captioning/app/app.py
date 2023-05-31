@@ -8,7 +8,6 @@ from utils_val import Vocabulary,load_checkpoint
 import pandas as pd
 import torch.optim as optim
 
-
 app = Flask(__name__)
 UPLOAD_FOLDER = './app/static/uploads'  # Update the path to include the 'static' folder
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -17,9 +16,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Load the caption generator model
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = model.CNNtoRNN(256,256,3512,2)
+model = model.CNNtoRNN(256,256,2994,1)
 optimizer = optim.Adam(model.parameters(), lr=3e-4 )
-step = load_checkpoint(torch.load("./app/final_checkpoint3.pth"), model, optimizer)
+step = load_checkpoint(torch.load("./app/checkpoint22.pth"), model, optimizer)
 model.to(device)
 model.eval()
 
@@ -71,4 +70,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(port = 5000)
+    app.run(port = 6500)

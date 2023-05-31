@@ -17,21 +17,22 @@ class EncoderCNN(nn.Module):
         # Activation function and dropout layer
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(p_dropout)
-        self.batch_norm = nn.BatchNorm1d(embed_size)  # Batch Normalization layer
+        
   
     def forward(self, images):
         # Extract features from the images using the ResNet-50 model
         features = self.resnet(images)
 
-        # Set the requires_grad attribute of parameters based on the train_CNN flags
+        # Set the requires_grad attribute of parameters based on the train_CNN flag
         for name, parameter in self.resnet.named_parameters():
             if "fc.weight" in name or "fc.bias" in name:
                 parameter.requires_grad = True
             else:
                 parameter.requires_grad = self.train_CNN
-        # Apply ReLU activation function and dropout to the features and Batch Norm
-        features = self.batch_norm(features)
+
+        # Apply ReLU activation function and dropout to the features
         return self.dropout(self.relu(features))    					
+		
     
 class DecoderRNN(nn.Module):
     def __init__(self, embed_size, hidden_size, vocab_size, num_layers, p_dropout=0.5):
@@ -49,21 +50,12 @@ class DecoderRNN(nn.Module):
         # Dropout layer
         self.dropout = nn.Dropout(p_dropout)
 
-
-        
-
     def forward(self, features, captions):
         # Embed the captions
         embeddings = self.dropout(self.embed(captions))
-        
-        if embeddings.dim() == 3:
-            features = features.unsqueeze(0)
-        elif embeddings.dim() == 2:
-            embeddings = embeddings.unsqueeze(1)
-            features = features.unsqueeze(0)
-            
+
         # Concatenate the features and embedded captions
-        embeddings = torch.cat((features, embeddings), dim=0)
+        embeddings = torch.cat((features.unsqueeze(0), embeddings), dim=0)
 
         # Pass the embeddings through the LSTM layer
         hiddens, _ = self.lstm(embeddings)
