@@ -124,6 +124,8 @@ And finally a .txt file:
 
 - All the previous requirements are recommended to have, and also for the app, we will need to install another library called `flask`. So besides all the other libraries, packages and frameworks the app will be also using `flask`.
 
+- A checkpoint is needed you can download it from the last model link in the app.py explanation. Just take the file and add it into the app folder.
+
 - When runing the `app.py` file, some warnings will show up in the console, do not worry those warnings are because of loading the model. When the model is loaded you should see "Checkpoint loaded!" on your screen, after that a url will appear in the form of "http://localhost:5000" or "http://127.0.0.1:5000", acces to that url and if everything is correct, the app interface should appear. 
 
 - When dealing with images, just press the select image button and an image from the local machine will be chosen. After that, click the upload button and just wait for the caption and the image to pop up. 
@@ -136,6 +138,8 @@ And finally a .txt file:
 For correct usage, we want to execute the `app.py` file from the previous directory of the app folder, in this case from Image_captioning because of how the directories are implemented in the code. Otherwise if facing problems with directories, all the directories that must be changed for proper working are in the `app.py` file. 
 
 Also it can happen that the port where the web has to be located is already used, some warning saying so will show up. To solve this issue just go ahead to the very last line of code of the `app.py` and change the port variable to change the port where the web will be alocated.
+
+If for some reason the app provided here does not work, try downloading the app from the [google drive](https://drive.google.com/drive/folders/19pBiWG4_G3fbP5SOmNv2oCtIgJYS2QBd?usp=sharing) (The checkpoint is already on the folder).
 
 ## QUANTITATIVE and QUALITATIVE ANALYSIS
 
