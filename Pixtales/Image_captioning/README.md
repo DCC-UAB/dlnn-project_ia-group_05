@@ -91,7 +91,7 @@ Feel free to modify these parameters according to your specific needs and datase
 Finally, we wanted some visual way to show the results of our model. And we thought that creating an 'app' could be a great way to do it. The app folder consists in 3 python files:
 
 - **app.py**: This file contains the main commands and executations for the app to work, it holds the structure:
-  - Reads the model, you can download the last model checkpoint we have trained using the following link: [last model](https://drive.google.com/file/d/1mVPKUfm5HLlzx0Rwmtp5aj3zAUmqAeH1/view?usp=drive_link) , also note that the parameters of the model such as nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you are reading
+  - Reads the model, you can download the last model checkpoint we have trained using the following link: [last model](https://drive.google.com/file/d/1n7GJIqaEWQTSJlSO5kmS-h7QU8HNO6Th/view?usp=sharing) , also note that the parameters of the model such as nº of layers, embeding size, hidden size and the vocabulary's length must be equal to whatever model you are reading
   - Perform the necessary calculations and calls the necessary files and functions
   - Alocates the port the web will be hosted
   - Defines which file is the home file, which html in this case should read.
@@ -162,13 +162,19 @@ Now we will look into the the bleu score: for the last epoch we can see some int
   
 This is a dictionary with the caption as key and the bleu score as value, we can see that most of the setences could be perfectly a valid caption except for some of them that repeat words or mention that a man has 2 different shirts or other things that do not make a lot of sense but because the bleu score is comparing words, they are still a pretty valid ones since most of the sentece could be a caption.
   
-And finally the image caption evaluation. Remember how we said the loss would get down really slow, about 0.03 for each epoch at the end. We think we are falling into a local minima or some place that leads to a solution that looks trivial to the model since most of the time, the caption look almost the same:
+And finally the image caption evaluation. Remember how we said the loss would get down really slow, about 0.03 for each epoch at the end. Captions, can be divided between captions that have no relation with the image, other captions recognize some objects, colors or places but the rest of the caption is quite wrong and captions that have nothing to do with the actual image. Note that the model has some preferences for some objects, colors or places. This bias is due to the abundance of this object in the dataset, for example: there are a lot of dogs in the dataset and if an image has a dog the model will most likely detect the dog. Also note that semantically the model is not 100% correct, so some errors may be generated, for example: if a dog is swiming it may say that the dog is running through the water, but no dog can run through the water, they swim. With this said, let's look into some examples:
   
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/48a7722e-e572-4b25-b66b-a44656725153)
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/b823dda8-ab7f-4552-9e16-55d7e07b4c9e)
 
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/33d43c26-f38a-453d-8710-a6f9015e1733)
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/e31de0bd-0a7f-44be-8795-562653c195ad)
 
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/2d888667-d577-4303-84f6-69b0784fb568)
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/c13e23f3-c196-4a4d-8bfa-13198e8610f0)
+
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/cb8e2479-f8d5-4f7f-8e1c-76e079d05403)
+
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_05/assets/132783746/89785cd1-9a35-4cac-9299-b7aa0809e352)
+
+
 
 
 We can summarize that most of the captions that the model generates TRHOUGH THE APP on these 3 captions, as you can see, not good results at at all. Maybe one of the issues is the app itself and the way it generates the captions but otherwise it looks like it is falling into a local minimum or is lacking expressivity as all these 3 captions are the vast majority.
