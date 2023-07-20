@@ -1,4 +1,3 @@
-
 import os               # For operating system related operations like path management
 import pandas as pd     # For handling dataframes
 import torch            # The main PyTorch library
@@ -60,7 +59,7 @@ class Vocabulary:
                 tokens.append(self.stoi["<UNK>"])
         return tokens
 
-# Define the custom Dataset class
+# Define the custom Dataset class, take into account that labels (captions) are read from a csv.
 class FlickrDataset(Dataset):
     def __init__(self, root_dir, captions_file, transform=None, freq_threshold=5):
         self.root_dir = root_dir  # Base directory for images
